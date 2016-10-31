@@ -1,0 +1,56 @@
+// -----------------------------------------------------------------------
+// <copyright file="CustomerSubscribedSkuCollectionOperations.java" company="Microsoft">
+//      Copyright (c) Microsoft Corporation.  All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
+
+package com.microsoft.store.partnercenter.subscribedskus;
+
+import java.text.MessageFormat;
+import java.util.Locale;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.microsoft.store.partnercenter.BasePartnerComponent;
+import com.microsoft.store.partnercenter.IPartner;
+import com.microsoft.store.partnercenter.PartnerService;
+import com.microsoft.store.partnercenter.models.ResourceCollection;
+import com.microsoft.store.partnercenter.models.licenses.SubscribedSku;
+import com.microsoft.store.partnercenter.network.IPartnerServiceProxy;
+import com.microsoft.store.partnercenter.network.PartnerServiceProxy;
+import com.microsoft.store.partnercenter.utils.StringHelper;
+
+public class CustomerSubscribedSkuCollectionOperations 
+		extends BasePartnerComponent<String>
+		implements ICustomerSubscribedSkuCollection {
+
+    /**
+     * Initializes a new instance of the {@link #CustomerSubscribedSkuCollectionOperations} class.
+     * 
+     * @param rootPartnerOperations The root partner operations instance.
+     */
+    public CustomerSubscribedSkuCollectionOperations( IPartner rootPartnerOperations, String customerId )
+    {
+        super( rootPartnerOperations, customerId );
+        if ( StringHelper.isNullOrWhiteSpace( customerId ) )
+        {
+            throw new IllegalArgumentException( "customerId must be set" );
+        }
+    }
+
+	/***
+	 * Retrieves all the customer subscribed products.
+	 * 
+	 * @return All the customer subscribed products.
+	 */
+    @Override
+	public ResourceCollection<SubscribedSku> get() {
+        IPartnerServiceProxy<SubscribedSku, ResourceCollection<SubscribedSku>> partnerServiceProxy =
+                new PartnerServiceProxy<SubscribedSku, ResourceCollection<SubscribedSku>>( new TypeReference<ResourceCollection<SubscribedSku>>()
+                {
+                }, this.getPartner(), MessageFormat.format( PartnerService.getInstance().getConfiguration().getApis().get( "GetCustomerSubscribedSkus" ).getPath(),
+                                                            this.getContext(), Locale.US ) );
+
+        return partnerServiceProxy.get();
+	}
+
+}
