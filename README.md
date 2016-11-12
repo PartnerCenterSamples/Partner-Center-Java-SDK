@@ -4,6 +4,25 @@ The Partner Center Java SDK, provides an SDK to interact with the Microsoft's Pa
 
 This repo includes the Java SDK code as well as a sample-application that demonstrates how to make calls and consume the Java SDK.
 
+For documentation, refer to the C# SDK documentation here:
+https://msdn.microsoft.com/library/partnercenter/mt635943.aspx 
+Java SDK is similar to C# SDK and please refer to the Sample app for more details specific to Java SDK.
+
+## Capabilities of the Java SDK
+
+* Customer Operations
+
+* Commerce operations (Order & Subscription Management)
+
+* Azure Spending 
+
+* Audit 
+
+* Customer User Management
+
+* License Assignment 
+
+* Rate Card  
 
 ## Here are the steps you can follow to run the SDK and Sample-App code locally:
 
