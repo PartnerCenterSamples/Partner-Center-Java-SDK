@@ -63,7 +63,7 @@ public class CustomerUserLicenseUpdateOperations
             new PartnerServiceProxy<LicenseUpdate, LicenseUpdate>( new TypeReference<LicenseUpdate>()
             {
             }, this.getPartner(), MessageFormat.format( PartnerService.getInstance().getConfiguration().getApis().get( "SetCustomerUserLicenseUpdates" ).getPath(),
-                                                        this.getContext().getItem1(), this,getContext().getItem2(), Locale.US ) );
+                                                        this.getContext().getItem1(), this.getContext().getItem2(), Locale.US ) );
         return partnerServiceProxy.post( entity );
     }
 
