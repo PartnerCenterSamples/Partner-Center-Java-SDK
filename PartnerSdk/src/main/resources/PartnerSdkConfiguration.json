@@ -409,6 +409,25 @@
                 "Currency": "currency",
                 "Region": "region"
             }
+        },
+        "GetAzureUtilizationRecords": {
+            "Path": "customers/{0}/subscriptions/{1}/utilizations/azure",
+            "Parameters": {
+                "StartTime": "start_time",
+                "EndTime": "end_time",
+                "Granularity": "granularity",
+                "Size": "size",
+                "ShowDetails": "show_details"
+            }
+        },
+        "SeekAzureUtilizationRecords": {
+            "Path": "customers/{0}/subscriptions/{1}/utilizations/azure",
+            "Parameters": {
+                "SeekOperation": "seek_operation"
+            },
+            "AdditionalHeaders": {
+                "ContinuationToken": "MS-ContinuationToken"
+            }
         }
     }
 }

@@ -29,39 +29,44 @@ public class ResourceCollectionEnumeratorContainer
     implements IResourceCollectionEnumeratorContainer
 {
     /**
-     * A lazy reference to an offer enumerator factory.
+     * A reference to an offer enumerator factory.
      */
     private IndexBasedCollectionEnumeratorFactory<Offer, ResourceCollection<Offer>> offerEnumeratorFactory;
 
     /**
-     * A lazy reference to a customer enumerator factory.
+     * A reference to a customer enumerator factory.
      */
     private IndexBasedCollectionEnumeratorFactory<Customer, SeekBasedResourceCollection<Customer>> customerEnumeratorFactory;
 
     /**
-     * A lazy reference to a customer enumerator factory.
+     * A reference to a customer-user enumerator factory.
      */
     private IndexBasedCollectionEnumeratorFactory<CustomerUser, SeekBasedResourceCollection<CustomerUser>> customerUserEnumeratorFactory;
 
     /**
-     * A lazy reference to an invoice enumerator factory.
+     * A reference to an invoice enumerator factory.
      */
     private IndexBasedCollectionEnumeratorFactory<Invoice, ResourceCollection<Invoice>> invoiceEnumeratorFactory;
 
     /**
-     * A lazy reference to a service request enumerator factory.
+     * A reference to a service request enumerator factory.
      */
     private IndexBasedCollectionEnumeratorFactory<ServiceRequest, ResourceCollection<ServiceRequest>> serviceRequestEnumeratorFactory;
 
     /**
-     * A lazy reference to an invoice line enumerator factory.
+     * A reference to an invoice line enumerator factory.
      */
     private IndexBasedCollectionEnumeratorFactory<InvoiceLineItem, ResourceCollection<InvoiceLineItem>> invoiceLineItemEnumeratorFactory;
 
     /**
-     * A lazy reference to an audit record enumerator factory.
+     * A reference to an audit record enumerator factory.
      */
     private IndexBasedCollectionEnumeratorFactory<AuditRecord, SeekBasedResourceCollection<AuditRecord>> auditRecordEnumeratorFactory;
+
+    /**
+     * A reference to a utilization record enumerator factory.
+     */
+    private IUtilizationCollectionEnumeratorContainer utilizationRecordEnumeratorContainer;
 
     /**
      * Initializes a new instance of the {@link #ResourceCollectionEnumeratorContainer} class.
@@ -191,6 +196,20 @@ public class ResourceCollectionEnumeratorContainer
             );
         }
         return this.auditRecordEnumeratorFactory;
+    }
+
+    /**
+     * Gets factories that create enumerators for utilization records for different subscriptions.
+     */
+    @Override
+    public IUtilizationCollectionEnumeratorContainer getUtilization()
+    {
+        if ( this.utilizationRecordEnumeratorContainer == null )
+        {
+            this.utilizationRecordEnumeratorContainer =
+                new UtilizationCollectionEnumeratorContainer( this.getPartner() );
+        }
+        return this.utilizationRecordEnumeratorContainer;
     }
 
 }

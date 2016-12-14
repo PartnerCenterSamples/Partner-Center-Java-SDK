@@ -13,6 +13,7 @@ import com.microsoft.store.partnercenter.models.subscriptions.Subscription;
 import com.microsoft.store.partnercenter.models.utils.Tuple;
 import com.microsoft.store.partnercenter.usage.ISubscriptionUsageRecordCollection;
 import com.microsoft.store.partnercenter.usage.ISubscriptionUsageSummary;
+import com.microsoft.store.partnercenter.utilization.IUtilizationCollection;
 
 /**
  * This interface defines the operations available on a customer's subscription.
@@ -40,6 +41,11 @@ public interface ISubscription
      * Gets the current subscription's usage summary operations.
      */
     ISubscriptionUsageSummary getUsageSummary();
+    
+    /***
+     * Gets the current subscription's utilization operations.
+     */
+    IUtilizationCollection getUtilization();
     
     /***
      * Retrieves the subscription.

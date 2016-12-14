@@ -6,6 +6,7 @@
 
 package com.microsoft.store.partnercenter.enumerators;
 
+import com.microsoft.store.partnercenter.IPartnerComponentString;
 import com.microsoft.store.partnercenter.factory.IResourceCollectionEnumeratorFactory;
 import com.microsoft.store.partnercenter.models.ResourceCollection;
 import com.microsoft.store.partnercenter.models.SeekBasedResourceCollection;
@@ -20,7 +21,8 @@ import com.microsoft.store.partnercenter.models.users.CustomerUser;
 /**
  * Contains supported resource collection enumerators.
  */
-public interface IResourceCollectionEnumeratorContainer
+public interface IResourceCollectionEnumeratorContainer 
+	extends IPartnerComponentString
 {
     /**
      * Gets a factory that creates offer collection enumerators.
@@ -56,5 +58,10 @@ public interface IResourceCollectionEnumeratorContainer
      * Gets a factory that creates audit record collection enumerators.
      */
     IResourceCollectionEnumeratorFactory<SeekBasedResourceCollection<AuditRecord>> getAuditRecords();
+
+    /***
+     * Gets factories that create enumerators for utilization records for different subscriptions.
+     */
+    IUtilizationCollectionEnumeratorContainer getUtilization();
 
 }

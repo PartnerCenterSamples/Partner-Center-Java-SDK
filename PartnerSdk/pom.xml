@@ -8,11 +8,15 @@
 	<packaging>jar</packaging>
 
 	<name>Partner Center Java SDK</name>
-	<description>TODO: Description of the Partner Center Java SDK</description>
-	<url>TODO: URL of the Partner Center Java SDK</url>
-
-	<!-- TODO: SOURCE CONTROL MANAGER <scm> <connection>scm:git:git://github.com/MICROSOFT/PARTCENTERJAVASDK.GIT</connection> 
-		<url>https://github.com/MICROSOFT/PARTCENTERJAVASDK.GIT</url> </scm> -->
+	<description>
+		The Partner Center Java SDK, provides an SDK to interact with the Microsoft's Partner Center Service. 
+		This enables the Partners to perform the Partner Center operations programmatically or through their own portals. 
+		The Java SDK is the latest addition to existing portfolio of REST APIs and the C# SDK. 
+		This is currently tested and supports Java versions of Java 7 and above. 
+	</description>
+	<url>
+		https://github.com/PartnerCenterSamples/Partner-Center-Java-SDK
+	</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -81,71 +85,19 @@
 		</resources>
 
 		<pluginManagement>
-		<plugins>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.0</version>
-				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
-				</configuration>
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-failsafe-plugin</artifactId>
-				<version>2.19.1</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>integration-test</goal>
-							<goal>verify</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>              
-          <parallel>classes</parallel>
-          <threadCount>5</threadCount>
-					<skipTests>${skipITests}</skipTests>
-				</configuration>
-			</plugin>
-
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
-				<version>1.10</version>
-				<executions>
-					<execution>
-						<id>add-source</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>add-test-source</goal>
-						</goals>
-						<configuration>
-							<sources>
-								<source>src/itest/java</source>
-							</sources>
-						</configuration>
-					</execution>
-					<execution>
-						<id>add-resource</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>add-test-resource</goal>
-						</goals>
-						<configuration>
-							<resources>
-								<resource>
-									<directory>src/itest/resources</directory>
-								</resource>
-							</resources>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
+			<plugins>
+			
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.0</version>
+					<configuration>
+						<source>1.6</source>
+						<target>1.6</target>
+					</configuration>
+				</plugin>
+				
+			</plugins>
 		</pluginManagement>
 	</build>
 </project>

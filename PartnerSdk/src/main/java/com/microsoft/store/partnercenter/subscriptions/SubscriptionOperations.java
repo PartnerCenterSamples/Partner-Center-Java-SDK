@@ -21,6 +21,8 @@ import com.microsoft.store.partnercenter.usage.ISubscriptionUsageRecordCollectio
 import com.microsoft.store.partnercenter.usage.ISubscriptionUsageSummary;
 import com.microsoft.store.partnercenter.usage.SubscriptionUsageRecordCollectionOperations;
 import com.microsoft.store.partnercenter.usage.SubscriptionUsageSummaryOperations;
+import com.microsoft.store.partnercenter.utilization.IUtilizationCollection;
+import com.microsoft.store.partnercenter.utilization.UtilizationCollectionOperations;
 import com.microsoft.store.partnercenter.utils.StringHelper;
 
 /**
@@ -35,24 +37,29 @@ public class SubscriptionOperations
     private String subscriptionId;
 
     /**
-     * A lazy reference to the current subscription's add-ons operations.
+     * A reference to the current subscription's add-ons operations.
      */
     private ISubscriptionAddOnCollection subscriptionAddOnsOperations;
 
     /**
-     * A lazy reference to the current subscription's upgrade operations.
+     * A reference to the current subscription's upgrade operations.
      */
     private ISubscriptionUpgradeCollection subscriptionUpgradeOperations;
     
     /***
-     * A lazy reference to the current subscription's resource usage records operations.
+     * A reference to the current subscription's resource usage records operations.
      */
     private ISubscriptionUsageRecordCollection usageRecordsOperations;
 
     /**
-     * A lazy reference to the current subscription's usage summary operations.
+     * A reference to the current subscription's usage summary operations.
      */
     private ISubscriptionUsageSummary subscriptionUsageSummaryOperations;
+    
+    /***
+     * A reference to the current subscription's utilities operations.
+     */
+    private IUtilizationCollection subscriptionUtilizationOperations;
 
     /**
      * Initializes a new instance of the {@link #SubscriptionOperations} class.
@@ -131,6 +138,20 @@ public class SubscriptionOperations
                 new SubscriptionUsageSummaryOperations( this.getPartner(), customerId, subscriptionId );
         }
         return this.subscriptionUsageSummaryOperations;
+    }
+
+    /**
+     * Gets the current subscription's utilization operations.
+     */
+    @Override
+    public IUtilizationCollection getUtilization()
+    {
+        if ( this.subscriptionUtilizationOperations == null )
+        {
+            this.subscriptionUtilizationOperations =
+                new UtilizationCollectionOperations( this.getPartner(), customerId, subscriptionId );
+        }
+        return this.subscriptionUtilizationOperations;
     }
 
     /**
