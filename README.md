@@ -24,6 +24,8 @@ Java SDK is similar to C# SDK and please refer to the Sample app for more detail
 
 * Rate Card  
 
+* Azure Subscription Utilization Records
+
 ## Here are the steps you can follow to run the SDK and Sample-App code locally:
 
 1. Install Java, Maven and Eclipse (or another IDE) if you don't already have these installed
