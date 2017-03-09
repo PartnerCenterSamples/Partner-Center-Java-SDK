@@ -2,7 +2,7 @@
   "PartnerServiceSettings": {
       "PartnerServiceApiEndpoint": "https://api.partnercenter.microsoft.com",
       "AuthenticationAuthorityEndpoint": "https://login.windows.net/",
-      "GraphEndpoint": "https://graph.ppe.windows.net",
+      "GraphEndpoint": "https://graph.windows.net",
       "CommonDomain": "common"
   },
   "UserAuthentication": {
