@@ -29,6 +29,7 @@ import org.apache.http.impl.client.HttpClients;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.module.SimpleModule;
@@ -300,6 +301,7 @@ public class PartnerServiceProxy<TRequest, TResponse>
             __JsonConverter.setSerializationInclusion( Include.NON_NULL );
             __JsonConverter.registerModule( new SimpleModule().addDeserializer( InvoiceLineItem.class, new InvoiceLineItemDeserializer() ) );
             __JsonConverter.registerModule( new SimpleModule().addDeserializer( URI.class, new UriDeserializer() ) );
+	    __JsonConverter.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         }
         return __JsonConverter;
     }
