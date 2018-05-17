@@ -65,6 +65,11 @@ public class PartnerServiceProxy<TRequest, TResponse>
      * The request context the proxy will use in executing the network calls.
      */
     private IRequestContext requestContext = new RequestContext();
+    
+    /**
+     * The character which acts as the byte order mark for UTF-8.
+     */
+    private static final String UTF8_BOM = "\uFEFF";
 
     /**
      * Initializes a new instance of the {@link #PartnerServiceProxy{TRequest, TResponse}} class.
@@ -618,11 +623,16 @@ public class PartnerServiceProxy<TRequest, TResponse>
             try
             {
                 // That string trimming is due to the byte order mark coming on
-                // the beginning of the Json response, after it was changed to UTF-8
+                // the beginning of the JSON response for some APIs.
             	TResponse responseObj = null;
-                if ( response.getStatusLine().getStatusCode() != 204 && response.getEntity() != null ){                	
-	                responseBody =
-	                    StringHelper.fromInputStream( response.getEntity().getContent(), "UTF-8" ).substring( 1 );
+                if ( response.getStatusLine().getStatusCode() != 204 && response.getEntity() != null ){
+                	// Read the raw input in UTF-8 format.
+	                responseBody = StringHelper.fromInputStream( response.getEntity().getContent(), "UTF-8" );
+	                
+	                // Remove byte order mark, a character designating the beginning of a Unicode string, if it exists in the payload.
+	                if (responseBody != null && responseBody.length() > 0 && responseBody.substring(0, 1) == UTF8_BOM) {
+	                	responseBody = responseBody.substring(1);
+	                }
 	                responseObj = getJsonConverter().readValue( responseBody, responseClass );
                 }
                 response.close();
