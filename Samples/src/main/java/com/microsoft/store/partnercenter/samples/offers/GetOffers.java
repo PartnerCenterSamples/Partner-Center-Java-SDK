@@ -7,7 +7,6 @@
 package com.microsoft.store.partnercenter.samples.offers;
 
 import java.text.MessageFormat;
-
 import com.microsoft.store.partnercenter.IPartner;
 import com.microsoft.store.partnercenter.models.ResourceCollection;
 import com.microsoft.store.partnercenter.models.offers.Offer;
