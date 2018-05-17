@@ -1,5 +1,5 @@
 # PartnerCenter Java SDK
-[![Build Status](https://chironeng.visualstudio.com/_apis/public/build/definitions/d03521b6-3f75-4cda-8e94-fcf0e02fd9f1/1/badge)]
+[![Build Status](https://chironeng.visualstudio.com/_apis/public/build/definitions/d03521b6-3f75-4cda-8e94-fcf0e02fd9f1/1/badge)](https://chironeng.visualstudio.com/PartnerCenterSDK/_build/index?definitionId=1)
 
 The Partner Center Java SDK, provides an SDK to interact with the Microsoft's Partner Center Service. This enables the Partners to perform the Partner Center operations programmatically or through their own portals. The Java SDK is the latest addition to existing portfolio of REST APIs and the C# SDK. This is currently tested and supports Java versions of Java 7 and above. 
 
