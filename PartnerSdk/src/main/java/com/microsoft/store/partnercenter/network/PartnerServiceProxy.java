@@ -630,7 +630,7 @@ public class PartnerServiceProxy<TRequest, TResponse>
 	                responseBody = StringHelper.fromInputStream( response.getEntity().getContent(), "UTF-8" );
 	                
 	                // Remove byte order mark, a character designating the beginning of a Unicode string, if it exists in the payload.
-	                if (responseBody != null && responseBody.length() > 0 && responseBody.substring(0, 1) == UTF8_BOM) {
+	                if (responseBody != null && responseBody.length() > 0 && responseBody.substring(0, 1).equals(UTF8_BOM)) {
 	                	responseBody = responseBody.substring(1);
 	                }
 	                responseObj = getJsonConverter().readValue( responseBody, responseClass );
