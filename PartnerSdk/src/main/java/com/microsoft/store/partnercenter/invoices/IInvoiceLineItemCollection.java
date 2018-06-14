@@ -27,5 +27,4 @@ public interface IInvoiceLineItemCollection
     * @return: The subset of invoice line items.
     */
    ResourceCollection<InvoiceLineItem> get( int size, int offset );
-
 }

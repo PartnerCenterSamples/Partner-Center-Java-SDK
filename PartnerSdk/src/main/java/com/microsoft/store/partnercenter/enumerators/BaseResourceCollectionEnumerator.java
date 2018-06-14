@@ -113,30 +113,36 @@ public abstract class BaseResourceCollectionEnumerator<T extends ResourceBaseWit
     @Override
     public void next( IRequestContext context )
     {
-        if ( !this.hasValue() )
+        if (!this.hasValue())
         {
             throw new UnsupportedOperationException( "The enumerator does not have a current value" );
         }
 
-        if ( this.isLastPage() )
+        if (this.isLastPage())
         {
             // we are done
             this.resourceCollection = null;
-
         }
         else
         {
             // get the next page
             PartnerServiceProxy<T, T> partnerServiceProxy =
-                new PartnerServiceProxy<T, T>( responseType, this.getPartner(),
-                                               this.resourceCollection.getLinks().getNext().getUri().toString() );
+                new PartnerServiceProxy<T, T>( 
+                    responseType, 
+                    this.getPartner(),
+                    this.resourceCollection.getLinks().getNext().getUri().toString() );
+          
             // the links already contains the version number, let's not replicate it
             partnerServiceProxy.setIsUrlPathAlreadyBuilt( true );
-            for ( KeyValuePair<String, String> header : this.resourceCollection.getLinks().getNext().getHeaders() )
+          
+            for (KeyValuePair<String, String> header : this.resourceCollection.getLinks().getNext().getHeaders())
             {
-                partnerServiceProxy.getAdditionalRequestHeaders().add( new KeyValuePair<String, String>( header.getKey(),
-                                                                                                         header.getValue() ) );
+                partnerServiceProxy.getAdditionalRequestHeaders().add( 
+                    new KeyValuePair<String, String>( 
+                        header.getKey(),
+                        header.getValue() ) );
             }
+
             this.resourceCollection = partnerServiceProxy.get();
         }
     }
@@ -183,7 +189,4 @@ public abstract class BaseResourceCollectionEnumerator<T extends ResourceBaseWit
             this.resourceCollection = partnerServiceProxy.get();
         }
     }
-
 }
-
-// await

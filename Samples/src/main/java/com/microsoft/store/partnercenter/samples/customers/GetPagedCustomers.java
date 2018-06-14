@@ -53,29 +53,35 @@ public class GetPagedCustomers
     {
         IPartner partnerOperations = this.getContext().getUserPartnerOperations();
         this.getContext().getConsoleHelper().startProgress( "Querying customers" );
+       
         // query the customers, get the first page if a page size was set, otherwise get all customers
         SeekBasedResourceCollection<Customer> customersPage = ( this.customerPageSize <= 0 )
                         ? partnerOperations.getCustomers().get()
                         : partnerOperations.getCustomers().query( QueryFactory.getInstance().buildIndexedQuery( this.customerPageSize ) );
         this.getContext().getConsoleHelper().stopProgress();
+       
         // create a customer enumerator which will aid us in traversing the customer pages
         IResourceCollectionEnumerator<SeekBasedResourceCollection<Customer>> customersEnumerator =
             partnerOperations.getEnumerators().getCustomers().create( customersPage );
+       
         int pageNumber = 1;
+       
         while ( customersEnumerator.hasValue() )
         {
             // print the current customer results page
-            this.getContext().getConsoleHelper().writeObject( customersEnumerator.getCurrent(),
-                                                              MessageFormat.format( "Customer Page: {0}",
-                                                                                    pageNumber++ ) );
+            this.getContext().getConsoleHelper().writeObject(
+                customersEnumerator.getCurrent(),
+                MessageFormat.format( "Customer Page: {0}",pageNumber++ ) );
+
             System.out.println();
             System.out.println( "Press Enter to retrieve the next customers page" );
+       
             ConsoleHelper.getInstance().getScanner().nextLine();
             this.getContext().getConsoleHelper().startProgress( "Getting next customers page" );
+
             // get the next page of customers
             customersEnumerator.next();
             this.getContext().getConsoleHelper().stopProgress();
         }
     }
-
 }

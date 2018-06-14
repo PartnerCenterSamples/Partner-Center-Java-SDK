@@ -244,21 +244,6 @@ public class ServiceRequest
     }
 
     /**
-     * Gets or sets a collection of file links.
-     */
-    private Collection<FileInfo> __FileLinks;
-
-    public Collection<FileInfo> getFileLinks()
-    {
-        return __FileLinks;
-    }
-
-    public void setFileLinks( Collection<FileInfo> value )
-    {
-        __FileLinks = value;
-    }
-
-    /**
      * Gets or sets a new Note that can be added to an existing service Request.
      */
     private ServiceRequestNote __NewNote;

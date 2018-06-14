@@ -34,12 +34,11 @@ public class GetCustomerUsageSummary
     protected void runScenario()
     {
         IPartner partnerOperations = this.getContext().getUserPartnerOperations();
-        String customerId = this.obtainCustomerIdForUsage( "Enter the ID of the customer to retrieve his/her usage summary" );
+        String customerId = this.obtainCustomerIdForUsage( "Enter the ID of the customer to retrieve usage summary" );
         this.getContext().getConsoleHelper().startProgress( "Retrieving customer usage summary" );
         CustomerUsageSummary customerUsageSummary =
             partnerOperations.getCustomers().byId( customerId ).getUsageSummary().get();
         this.getContext().getConsoleHelper().stopProgress();
         this.getContext().getConsoleHelper().writeObject( customerUsageSummary, "Customer usage summary" );
     }
-
 }

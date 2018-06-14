@@ -6,7 +6,8 @@
 
 package com.microsoft.store.partnercenter.models.partners;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.microsoft.store.partnercenter.models.Address;
 import com.microsoft.store.partnercenter.models.Contact;
 import com.microsoft.store.partnercenter.models.ResourceBaseWithLinks;
@@ -15,7 +16,7 @@ import com.microsoft.store.partnercenter.models.StandardResourceLinks;
 /**
  * Represents a partner's billing profile.
  */
-@JsonIgnoreProperties( { "profileType" } )
+@JsonInclude(Include.NON_EMPTY)
 public class BillingProfile
     extends ResourceBaseWithLinks<StandardResourceLinks>
 {
@@ -104,6 +105,21 @@ public class BillingProfile
     }
 
     /**
+     * Gets or sets the billing day.
+     */
+    private int __BillingDay;
+
+    public int getBillingDay()
+    {
+        return __BillingDay;
+    }
+
+    public void setBillingDay( int value )
+    {
+        __BillingDay = value;
+    }
+
+    /**
      * Gets or sets the billing currency.
      */
     private String __BillingCurrency;
@@ -117,5 +133,4 @@ public class BillingProfile
     {
         __BillingCurrency = value;
     }
-
 }

@@ -36,11 +36,6 @@ public class PartnerServiceRequestCollectionOperations
     implements IPartnerServiceRequestCollection
 {
     /**
-     * Represents a partner tenant id
-     */
-    private static final String ImplicitOrganizationId = "my-org";
-
-    /**
      * The minimum allowed page size for the collection.
      */
     private static final int MIN_PAGE_SIZE = 1;
@@ -176,16 +171,16 @@ public class PartnerServiceRequestCollectionOperations
         {
             throw new IllegalArgumentException( "agentLocale can't be null" );
         }
+
         IPartnerServiceProxy<ServiceRequest, ServiceRequest> partnerServiceProxy =
             new PartnerServiceProxy<ServiceRequest, ServiceRequest>( new TypeReference<ServiceRequest>()
             {
-            }, this.getPartner(), MessageFormat.format( PartnerService.getInstance().getConfiguration().getApis().get( "CreateServiceRequest" ).getPath(),
-                                                        ImplicitOrganizationId, Locale.US ) );
+            }, 
+            this.getPartner(), 
+            MessageFormat.format( 
+                PartnerService.getInstance().getConfiguration().getApis().get("CreateServiceRequest" ).getPath(),
+                agentLocale));
 
-        partnerServiceProxy.getUriParameters().add( new KeyValuePair<String, String>( PartnerService.getInstance().getConfiguration().getApis().get( "CreateServiceRequest" ).getParameters().get( "Locale" ),
-                                                                                      agentLocale ) );
-
-        return partnerServiceProxy.post( serviceRequest );
+        return partnerServiceProxy.post(serviceRequest);
     }
-
 }

@@ -19,8 +19,8 @@ import com.microsoft.store.partnercenter.models.utils.KeyValuePair;
 import com.microsoft.store.partnercenter.samples.BasePartnerScenario;
 import com.microsoft.store.partnercenter.samples.IScenarioContext;
 
-public class GetAuditRecords extends BasePartnerScenario {
-
+public class GetAuditRecords extends BasePartnerScenario 
+{
 	public GetAuditRecords(IScenarioContext context) {
 		super("Query for the partner's audit records", context);
 	}
@@ -74,11 +74,8 @@ public class GetAuditRecords extends BasePartnerScenario {
                 System.out.println();
             }
 
-            
             System.out.println();
             auditRecordssEnumerator.next();
         }
-
 	}
-
 }

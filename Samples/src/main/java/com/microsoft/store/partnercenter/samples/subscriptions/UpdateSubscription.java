@@ -48,5 +48,4 @@ public class UpdateSubscription
         this.getContext().getConsoleHelper().stopProgress();
         this.getContext().getConsoleHelper().writeObject( updatedSubscription, "Updated subscription" );
     }
-
 }

@@ -7,6 +7,7 @@
 package com.microsoft.store.partnercenter.customerusers;
 
 import java.text.MessageFormat;
+import java.util.List;
 import java.util.Locale;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -15,6 +16,8 @@ import com.microsoft.store.partnercenter.IPartner;
 import com.microsoft.store.partnercenter.PartnerService;
 import com.microsoft.store.partnercenter.models.ResourceCollection;
 import com.microsoft.store.partnercenter.models.licenses.License;
+import com.microsoft.store.partnercenter.models.licenses.LicenseGroupId;
+import com.microsoft.store.partnercenter.models.utils.KeyValuePair;
 import com.microsoft.store.partnercenter.models.utils.Tuple;
 import com.microsoft.store.partnercenter.network.IPartnerServiceProxy;
 import com.microsoft.store.partnercenter.network.PartnerServiceProxy;
@@ -44,8 +47,13 @@ public class CustomerUserLicenseCollectionOperations
         }
     }
 
-	@Override
-	public ResourceCollection<License> get() {
+    /***
+     * Retrieves the assigned licenses to a customer user.
+     * 
+     * @return: The customer user's directory roles.
+     */
+    public ResourceCollection<License> get()
+    {
         IPartnerServiceProxy<License, ResourceCollection<License>> partnerServiceProxy =
                 new PartnerServiceProxy<License, ResourceCollection<License>>( new TypeReference<ResourceCollection<License>>()
                 {
@@ -53,7 +61,28 @@ public class CustomerUserLicenseCollectionOperations
         				this.getContext().getItem1(), this.getContext().getItem2(), Locale.US ) );
 
         return partnerServiceProxy.get();
-	}
+    }
+    
+    /***
+     * Retrieves the assigned licenses to a customer user.
+     * 
+     * @param licneseGroupIds License group identifier
+     * @return: The customer user's directory roles.
+     */
+    public ResourceCollection<License> get(List<LicenseGroupId> licenseGroupIds)
+    {
+        IPartnerServiceProxy<License, ResourceCollection<License>> partnerServiceProxy =
+                new PartnerServiceProxy<License, ResourceCollection<License>>( new TypeReference<ResourceCollection<License>>()
+                {
+                }, this.getPartner(), MessageFormat.format( PartnerService.getInstance().getConfiguration().getApis().get( "GetCustomerUserAssignedLicenses" ).getPath(),
+        				this.getContext().getItem1(), this.getContext().getItem2(), Locale.US ) );
 
+        for (LicenseGroupId groupId : licenseGroupIds) {
+            partnerServiceProxy.getUriParameters().add( 
+                new KeyValuePair<String, String>( PartnerService.getInstance().getConfiguration().getApis().get( "GetCustomerUserAssignedLicenses" ).getParameters().get( "licenseGroupIds" ),
+                groupId.toString() ) );
+        }
 
+        return partnerServiceProxy.get();
+    }
 }

@@ -391,7 +391,51 @@ public class LicenseBasedLineItem
      */
     public BillingProvider getBillingProvider()
     {
-        return BillingProvider.OFFICE;
+        return BillingProvider.Office;
     }
 
+     /**
+     *  Gets or sets domain name.
+     */
+    private String __DomainName;
+
+    public String getDomainName()
+    {
+        return __DomainName;
+    }
+
+    public void setDomainName( String value )
+    {
+        __DomainName = value;
+    }
+
+     /**
+     *  Gets or sets the billing cycle type.
+     */
+    private String __BillingCycleType;
+
+    public String getBillingCycleType()
+    {
+        return __BillingCycleType;
+    }
+
+    public void setBillingCycleType( String value )
+    {
+        __BillingCycleType = value;
+    }
+
+     /**
+     *  Gets or sets the billing cycle type.
+     */
+    private String __SubscriptionDescription;
+
+    public String getSubscriptionDescription()
+    {
+        return __SubscriptionDescription;
+    }
+
+    public void setSubscriptionDescription( String value )
+    {
+        __SubscriptionDescription = value;
+    }
 }

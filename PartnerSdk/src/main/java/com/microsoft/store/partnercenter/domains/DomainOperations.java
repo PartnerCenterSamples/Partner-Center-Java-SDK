@@ -18,8 +18,8 @@ import com.microsoft.store.partnercenter.exception.PartnerException;
 import com.microsoft.store.partnercenter.network.IPartnerServiceProxy;
 import com.microsoft.store.partnercenter.network.PartnerServiceProxy;
 
-public class DomainOperations extends BasePartnerComponentString implements IDomain {
-
+public class DomainOperations extends BasePartnerComponentString implements IDomain
+ {
 	/***
 	 * Initializes a new instance of the DomainOperations class.
 	 * 
@@ -46,8 +46,12 @@ public class DomainOperations extends BasePartnerComponentString implements IDom
         IPartnerServiceProxy<String, String> partnerServiceProxy =
                 new PartnerServiceProxy<String, String>( new TypeReference<String>()
                 {
-                }, this.getPartner(), MessageFormat.format( PartnerService.getInstance().getConfiguration().getApis().get( "CheckDomainAvailability" ).getPath(),
-                                                            this.getContext(), Locale.US ) );
+				}, 
+				this.getPartner(), 
+				MessageFormat.format( 
+					PartnerService.getInstance().getConfiguration().getApis().get( "CheckDomainAvailability" ).getPath(),
+					this.getContext(), 
+					Locale.US ) );
         
         try
         {
@@ -65,5 +69,4 @@ public class DomainOperations extends BasePartnerComponentString implements IDom
         
         return true;
 	}
-
 }

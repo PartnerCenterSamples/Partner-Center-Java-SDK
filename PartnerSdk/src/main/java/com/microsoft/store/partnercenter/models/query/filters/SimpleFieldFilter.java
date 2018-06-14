@@ -29,13 +29,32 @@ public class SimpleFieldFilter
      * @param field The filter field name
      * @param value The value to execute the operator on.
      * @param operation The operator value.
-     * @param fieldType The field type.
+     */
+    public SimpleFieldFilter( String field, FieldFilterOperation operation, String value )
+    {
+        this( field, value, operation, FieldType.STRING );
+    }
+
+    /**
+     * Initializes a new instance of the {@link #SimpleFieldFilter} class.
+     * 
+     * @param field The filter field name
+     * @param value The value to execute the operator on.
+     * @param operation The operator value.
      */
     public SimpleFieldFilter( String field, String value, FieldFilterOperation operation )
     {
         this( field, value, operation, FieldType.STRING );
     }
 
+    /**
+     * Initializes a new instance of the {@link #SimpleFieldFilter} class.
+     * 
+     * @param field The filter field name
+     * @param value The value to execute the operator on.
+     * @param operation The operator value.
+     * @param fieldType The field type.x
+     */
     public SimpleFieldFilter( String field, String value, FieldFilterOperation operation, FieldType fieldType )
     {
         this.setField( field );
@@ -88,8 +107,11 @@ public class SimpleFieldFilter
             throw new IllegalArgumentException( "filterExpressionGenerator can't be null" );
         }
 
-        return filterExpressionGenerator.generateSimpleExpression( this.getField(), this.getOperator(), this.getValue(),
-                                                                   this.getFieldType() );
+        return filterExpressionGenerator.generateSimpleExpression( 
+            this.getField(), 
+            this.getOperator(), 
+            this.getValue(),
+            this.getFieldType() );
     }
 
     /**

@@ -48,23 +48,33 @@ public class GetPagedInvoices
         IPartner partnerOperations = this.getContext().getUserPartnerOperations();
         this.getContext().getConsoleHelper().startProgress( "Querying invoices" );
         int pageNumber = 1;
+        
         // Query the invoices, get the first page if a page size was set, otherwise get all invoices
         ResourceCollection<Invoice> invoicesPage =
             ( this.invoicePageSize <= 0 ) ? partnerOperations.getInvoices().get()
                             : partnerOperations.getInvoices().get( 0, this.invoicePageSize );
+
         IResourceCollectionEnumerator<ResourceCollection<Invoice>> invoiceEnumerator =
             partnerOperations.getEnumerators().getInvoices().create( invoicesPage );
+
         this.getContext().getConsoleHelper().stopProgress();
+
         while ( invoiceEnumerator.hasValue() )
         {
-            this.getContext().getConsoleHelper().writeObject( invoiceEnumerator.getCurrent(),
-                                                              MessageFormat.format( "Invoices Page: {0}",
-                                                                                    pageNumber++ ) );
+            this.getContext().getConsoleHelper().writeObject( 
+                invoiceEnumerator.getCurrent(),
+                MessageFormat.format( 
+                    "Invoices Page: {0}",
+                    pageNumber++ ) );
+            
             ConsoleHelper.getInstance().warning( "\nPress Enter to retrieve the next invoice page" );
             ConsoleHelper.getInstance().getScanner().nextLine();
+            
             this.getContext().getConsoleHelper().startProgress( "Getting next invoice page" );
+            
             // Get the next page of invoices
             invoiceEnumerator.next();
+            
             this.getContext().getConsoleHelper().stopProgress();
         }
     }

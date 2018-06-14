@@ -55,7 +55,7 @@ public class InvoiceLineItemCollectionOperations
         	throw new IllegalArgumentException( "invoiceId has to be set." );
         }
         
-        if ( billingProvider == BillingProvider.NONE )
+        if ( billingProvider == BillingProvider.None )
         {
             throw new IllegalArgumentException("The billing provider is not valid.");
         }
@@ -95,19 +95,18 @@ public class InvoiceLineItemCollectionOperations
 	@Override
 	public ResourceCollection<InvoiceLineItem> get( int size, int offset )
 	{
-        IPartnerServiceProxy<InvoiceLineItem, ResourceCollection<InvoiceLineItem>> partnerServiceProxy =
-                new PartnerServiceProxy<InvoiceLineItem, ResourceCollection<InvoiceLineItem>>( new TypeReference<ResourceCollection<InvoiceLineItem>>()
-                {
-                }, this.getPartner(), MessageFormat.format( PartnerService.getInstance().getConfiguration().getApis().get( "GetInvoiceLineItems" ).getPath(),
-                                                            this.getContext(), this.billingProvider, this.invoiceLineItemType, Locale.US ) );
+                IPartnerServiceProxy<InvoiceLineItem, ResourceCollection<InvoiceLineItem>> partnerServiceProxy =
+                        new PartnerServiceProxy<InvoiceLineItem, ResourceCollection<InvoiceLineItem>>( new TypeReference<ResourceCollection<InvoiceLineItem>>()
+                        {
+                        }, this.getPartner(), MessageFormat.format( PartnerService.getInstance().getConfiguration().getApis().get( "GetInvoiceLineItems" ).getPath(),
+                                                                this.getContext(), this.billingProvider, this.invoiceLineItemType, Locale.US ) );
 
-        partnerServiceProxy.getUriParameters().add( new KeyValuePair<String, String>( PartnerService.getInstance().getConfiguration().getApis().get( "GetInvoiceLineItems" ).getParameters().get( "Size" ),
-                String.valueOf( size ) ) );
+                partnerServiceProxy.getUriParameters().add( new KeyValuePair<String, String>( PartnerService.getInstance().getConfiguration().getApis().get( "GetInvoiceLineItems" ).getParameters().get( "Size" ),
+                        String.valueOf( size ) ) );
 
-        partnerServiceProxy.getUriParameters().add( new KeyValuePair<String, String>( PartnerService.getInstance().getConfiguration().getApis().get( "GetInvoiceLineItems" ).getParameters().get( "Offset" ),
-                String.valueOf( offset ) ) );
+                partnerServiceProxy.getUriParameters().add( new KeyValuePair<String, String>( PartnerService.getInstance().getConfiguration().getApis().get( "GetInvoiceLineItems" ).getParameters().get( "Offset" ),
+                        String.valueOf( offset ) ) );
 
-        return partnerServiceProxy.get();
+                return partnerServiceProxy.get();
 	}
-
 }

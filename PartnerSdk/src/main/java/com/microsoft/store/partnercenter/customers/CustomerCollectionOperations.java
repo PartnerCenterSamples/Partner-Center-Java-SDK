@@ -148,7 +148,6 @@ public class CustomerCollectionOperations
         return partnerServiceProxy.get();
     }
 
-    // await
     /**
      * Queries customers associated to the partner. - Count queries are not supported by this operation. - You can set
      * the page size or filter or do both at the same time. - Sort is not supported. - You can navigate to other pages
@@ -227,7 +226,4 @@ public class CustomerCollectionOperations
         }
         return partnerServiceProxy.get();
     }
-
 }
-
-// await

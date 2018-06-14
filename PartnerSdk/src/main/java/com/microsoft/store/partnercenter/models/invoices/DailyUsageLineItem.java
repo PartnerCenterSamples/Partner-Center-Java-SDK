@@ -128,5 +128,4 @@ public class DailyUsageLineItem
     {
         return InvoiceLineItemType.USAGELINEITEMS;
     }
-
 }

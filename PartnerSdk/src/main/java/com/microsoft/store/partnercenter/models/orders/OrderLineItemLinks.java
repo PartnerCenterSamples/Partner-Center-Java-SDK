@@ -28,4 +28,33 @@ public class OrderLineItemLinks
         __Subscription = value;
     }
 
+    /**
+     * Gets or sets the SKU link for the order line item.
+     */
+    private Link __Sku;
+
+    public Link getSku()
+    {
+        return __Sku;
+    }
+
+    public void setSku( Link value )
+    {
+        __Sku = value;
+    }
+
+    /**
+     * Gets or sets the provisioning status link for the order line item.
+     */
+    private Link __ProvisioningStatus;
+
+    public Link getProvisioningStatus()
+    {
+        return __ProvisioningStatus;
+    }
+
+    public void setProvisioningStatus( Link value )
+    {
+        __ProvisioningStatus = value;
+    }
 }

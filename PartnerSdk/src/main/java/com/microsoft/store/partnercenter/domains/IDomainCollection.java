@@ -13,9 +13,8 @@ public interface IDomainCollection extends IPartnerComponentString
     /***
      * Obtains a specific domain behavior.
      * 
-     * @param name="country": The domain.
-     * @returns: The domain operationsThe domain.
+     * @param domain The domain.
+     * @returns: The domain operations.
      */
     IDomain byDomain( String domain );
-
 }

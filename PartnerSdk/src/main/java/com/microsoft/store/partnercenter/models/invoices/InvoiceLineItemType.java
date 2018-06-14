@@ -14,11 +14,13 @@ public enum InvoiceLineItemType
      * Lists invoice line item types. Default value.
      */
     @JsonProperty( "none" ) NONE("None" ),
+
     /**
      * Daily usage information for associated with an invoice. This information does not contain data about cost per
      * use.
      */
     @JsonProperty( "usage_line_items" ) USAGELINEITEMS("UsageLineItems" ),
+
     /**
      * Billing line items associated with an invoice. Contains information such as cost per use, tax charged, etc.
      */
@@ -35,5 +37,4 @@ public enum InvoiceLineItemType
     {
         return this.urlName;
     }
-
 }

@@ -95,6 +95,21 @@ public class Invoice
         __CurrencyCode = value;
     }
 
+     /**
+     *  Gets or sets the currency symbol used for all invoice item amounts and totals.
+     */
+    private String __CurrencySymbol;
+
+    public String getCurrencySymbol()
+    {
+        return __CurrencySymbol;
+    }
+
+    public void setCurrencySymbol( String value )
+    {
+        __CurrencySymbol = value;
+    }
+
     /**
      * Gets or sets the link to download the invoice PDF document This value is not returned as part of the search
      * results. It will only get populated if invoice is accessed by Id. This link auto expires in 30 minutes
@@ -126,4 +141,64 @@ public class Invoice
         __InvoiceDetails = value;
     }
 
+    /**
+     * Gets or sets the amendments.
+     */
+    private Iterable<Invoice> __Amendments;
+
+    public Iterable<Invoice> getAmendments()
+    {
+        return __Amendments;
+    }
+
+    public void setAmendments( Iterable<Invoice> value )
+    {
+        __Amendments = value;
+    }
+
+    /**
+     * Gets or sets the Document type of the invoice (CreditNote, Invoice).
+     */
+    private DocumentType __DocumentType;
+
+    public DocumentType getDocumentType()
+    {
+        return __DocumentType;
+    }
+
+    public void setDocumentType( DocumentType value )
+    {
+        __DocumentType = value;
+    }
+
+    /**
+     * Gets or sets The ref number of the document which this doc amends of.
+     */
+    private String __AmendsOf;
+
+    public String getAmendsOf()
+    {
+        return __AmendsOf;
+    }
+
+    public void setAmendsOf( String value )
+    {
+        __AmendsOf = value;
+    }
+
+    /**
+     * Gets or sets Invoice Type. This will be used to set invoice type to Recurring,
+     * OneTime for UI to differentiate the types of invoices.
+     */
+    private String __InvoiceType;
+
+    public String getInvoiceType()
+    {
+        return __InvoiceType;
+    }
+
+    public void setInvoiceType( String value )
+    {
+        __InvoiceType = value;
+    }
 }

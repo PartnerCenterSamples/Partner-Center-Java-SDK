@@ -7,28 +7,19 @@
 package com.microsoft.store.partnercenter.validations;
 
 import com.microsoft.store.partnercenter.IPartnerComponentString;
-import com.microsoft.store.partnercenter.models.validations.CountryInformation;
+import com.microsoft.store.partnercenter.models.Address;
 
 /**
- * Represents the behavior of the validations.
+ * Represents the behavior of a validation operations.
  */
 public interface IValidationOperations
     extends IPartnerComponentString
 {
     /**
-     * Checks the availability of a domain prefix.
+     * Checks if the address is valid or not.
      * 
-     * @param domainPrefix The domain prefix to be verified.
-     * @return A boolean value to indicate if the domain is available.
+     * @param address The address to be validated.
+     * @return True if the address is valid, false otherwise.
      */
-    Boolean checkDomainAvailability( String domainPrefix );
-
-    /**
-     * Gets the market specific validation data by country.
-     * 
-     * @param country The country.
-     * @return The market specific validation data operations.
-     */
-    CountryInformation getMarketSpecificValidationDataByCountry( String country );
-
+    Boolean isAddressValid(Address address);
 }

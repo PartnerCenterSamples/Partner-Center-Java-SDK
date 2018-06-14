@@ -22,7 +22,6 @@ public interface ICustomerCollection
     extends IPartnerComponentString, IEntityCreateOperations<Customer, Customer>,
     IEntireEntityCollectionRetrievalOperations<Customer, SeekBasedResourceCollection<Customer>>
 {
-
     /**
      * Gets the customer usage record operations.
      */
@@ -57,5 +56,4 @@ public interface ICustomerCollection
      * @return The requested customers.
      */
     SeekBasedResourceCollection<Customer> query( IQuery customersQuery );
-
 }

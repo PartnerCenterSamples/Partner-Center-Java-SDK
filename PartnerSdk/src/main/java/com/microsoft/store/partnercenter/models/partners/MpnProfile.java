@@ -6,14 +6,12 @@
 
 package com.microsoft.store.partnercenter.models.partners;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.microsoft.store.partnercenter.models.ResourceBaseWithLinks;
 import com.microsoft.store.partnercenter.models.StandardResourceLinks;
 
 /**
  * Microsoft Partner Network profile of a partner
  */
-@JsonIgnoreProperties( { "profileType" } )
 public class MpnProfile
     extends ResourceBaseWithLinks<StandardResourceLinks>
 {
@@ -46,5 +44,4 @@ public class MpnProfile
     {
         __MpnId = value;
     }
-
 }

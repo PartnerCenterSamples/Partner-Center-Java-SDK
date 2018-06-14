@@ -8,9 +8,13 @@ package com.microsoft.store.partnercenter.models.invoices;
 
 import org.joda.time.DateTime;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 /**
  * Represents common properties for Usage based invoice line items
  */
+@JsonInclude(Include.NON_EMPTY)
 public abstract class BaseUsageBasedLineItem
     extends InvoiceLineItem
 {
@@ -257,14 +261,14 @@ public abstract class BaseUsageBasedLineItem
     /**
      * Gets or sets the total units consumed.
      */
-    private int __ConsumedQuantity;
+    private double __ConsumedQuantity;
 
-    public int getConsumedQuantity()
+    public double getConsumedQuantity()
     {
         return __ConsumedQuantity;
     }
 
-    public void setConsumedQuantity( int value )
+    public void setConsumedQuantity( double value )
     {
         __ConsumedQuantity = value;
     }
@@ -300,13 +304,72 @@ public abstract class BaseUsageBasedLineItem
     }
 
     /**
+     * Gets or sets the unit of measure for azure usage.
+     */
+    private String __Unit;
+
+    public String getUnit()
+    {
+        return __Unit;
+    }
+
+    public void setUnit( String value )
+    {
+        __Unit = value;
+    }
+
+    /**
+     * Gets or sets the illing cycle type.
+     */
+    private String __BillingCycleType;
+
+    public String getBillingCycleType()
+    {
+        return __BillingCycleType;
+    }
+
+    public void setBillingCycleType( String value )
+    {
+        __BillingCycleType = value;
+    }
+
+    /**
+     *  Gets or sets the customer id.
+     */
+    private String __CustomerId;
+
+    public String geCustomerId()
+    {
+        return __CustomerId;
+    }
+
+    public void setCustomerId( String value )
+    {
+        __CustomerId = value;
+    }
+
+    /**
+     * Gets or sets the domain name.
+     */
+    private String __DomainName;
+
+    public String getDomainName()
+    {
+        return __DomainName;
+    }
+
+    public void setDomainName( String value )
+    {
+        __DomainName = value;
+    }
+
+    /**
      * Returns the billing provider
      * 
      * @return The billing provider.
      */
     public BillingProvider getBillingProvider()
     {
-        return BillingProvider.AZURE;
+        return BillingProvider.Azure;
     }
-
 }

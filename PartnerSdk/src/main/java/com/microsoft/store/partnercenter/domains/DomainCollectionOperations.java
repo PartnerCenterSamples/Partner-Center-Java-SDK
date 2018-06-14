@@ -28,12 +28,11 @@ public class DomainCollectionOperations
 	 * Obtains a specific domain behavior.
 	 * 
 	 * @param domain: The domain.
-     * @returns: The domain operations.
+     * @return: The domain operations.
 	 */
 	@Override
 	public IDomain byDomain(String domain)
 	{
 		return new DomainOperations( this.getPartner(), domain );
 	}
-
 }

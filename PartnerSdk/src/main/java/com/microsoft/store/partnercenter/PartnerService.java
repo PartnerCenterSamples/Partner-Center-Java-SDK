@@ -46,14 +46,13 @@ public class PartnerService
         // log to the debugger window
         PartnerLog.getInstance().getLoggers().add( new SystemOutLogger() );
     }
-
     
     /***
      * Gets an instance of the partner service.
      */
     public static PartnerService getInstance()
     {
-            return PartnerService.__instance;
+        return PartnerService.__instance;
     }
 
 	private String __ApiRootUrl;
@@ -164,6 +163,7 @@ public class PartnerService
         {
             throw new PartnerException("The hostName should be set");
         }
+        
         proxyHostName = hostName;
         proxyPort = port;
     }

@@ -6,11 +6,10 @@
 
 package com.microsoft.store.partnercenter.models.users;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@JsonIgnoreProperties( { "state", "softDeletionTime" } )
-public class CustomerUser extends User {
+public class CustomerUser extends User 
+{
     /***
      * Gets or sets usage location, the location where user intends to use the license.
      */
@@ -26,5 +25,4 @@ public class CustomerUser extends User {
     {
     	__UsageLocation = value;
     }
-
 }

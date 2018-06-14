@@ -36,12 +36,12 @@ public class License extends ResourceBase {
 	@JsonProperty( "productSku" )    
     private ProductSku __ProductSku;
     
-    public ProductSku getId()
+    public ProductSku getProductSku()
     {
         return __ProductSku;
     }
 
-    public void setId( ProductSku value )
+    public void setProductSku( ProductSku value )
     {
     	__ProductSku = value;
     }

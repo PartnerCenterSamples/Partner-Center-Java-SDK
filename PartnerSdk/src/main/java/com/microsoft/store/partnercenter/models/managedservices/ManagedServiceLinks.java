@@ -59,5 +59,4 @@ public class ManagedServiceLinks
     {
         __ServiceTicket = value;
     }
-
 }

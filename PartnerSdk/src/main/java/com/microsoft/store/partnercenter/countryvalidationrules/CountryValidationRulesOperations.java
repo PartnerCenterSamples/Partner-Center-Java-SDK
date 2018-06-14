@@ -50,5 +50,4 @@ public class CountryValidationRulesOperations
                                                             this.getContext(), Locale.US ) );
         return partnerServiceProxy.get();
 	}
-
 }

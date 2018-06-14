@@ -72,6 +72,9 @@ public class Configuration
         }
     }
 
+    @JsonProperty("PartnerCenterClient")
+    private String PartnerCenterClient;
+
     @JsonProperty( "PartnerServiceApiRoot" )
     private String PartnerServiceApiRoot;
 
@@ -91,29 +94,33 @@ public class Configuration
     private Map<String, Api> Apis;
 
     /**
-     * Gets a single customer operations.
+     * Gets or sets the Partner Service API root. 
      * 
-     * @param customerId The customer id.
-     * @return The customer operations.
      */
     public String getPartnerServiceApiRoot()
     {
         return PartnerServiceApiRoot;
     }
 
-    /**
-     * Gets a single customer operations.
-     * 
-     * @param customerId The customer id.
-     * @return The customer operations.
-     */
     public void setPartnerServiceApiRoot( String partnerServiceApiRoot )
     {
         PartnerServiceApiRoot = partnerServiceApiRoot;
     }
 
     /**
-     * @return
+     * Gets or sets the Partner Center client name. 
+     * 
+     * @return The Partner Center client name. 
+     */
+    public String getPartnerCenterClient()
+    {
+        return PartnerCenterClient;
+    }
+
+    /**
+     * Gets or sets the Partner Service API version. 
+     * 
+     * @return The Partner Service API version. 
      */
     public String getPartnerServiceApiVersion()
     {
@@ -164,5 +171,4 @@ public class Configuration
     {
         Apis = apis;
     }
-
 }

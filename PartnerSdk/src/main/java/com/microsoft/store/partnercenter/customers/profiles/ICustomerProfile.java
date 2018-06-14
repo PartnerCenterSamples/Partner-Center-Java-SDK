@@ -15,12 +15,10 @@ import com.microsoft.store.partnercenter.models.ResourceBase;
 public interface ICustomerProfile<T extends ResourceBase>
     extends ICustomerReadonlyProfile<T>, IEntityUpdateOperations<T>
 {
-	
     /***
      *  Updates the customer profile.
      * @param name="customerProfile": The customer profile information.
      * @return: The updated customer profile.
      */
     T update( T customerProfile );
-
 }

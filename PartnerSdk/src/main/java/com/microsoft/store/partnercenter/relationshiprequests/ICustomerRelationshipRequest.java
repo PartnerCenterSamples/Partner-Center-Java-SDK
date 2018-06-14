@@ -23,5 +23,4 @@ public interface ICustomerRelationshipRequest
      * @return A customer relationship request.
      */
     CustomerRelationshipRequest get();
-
 }

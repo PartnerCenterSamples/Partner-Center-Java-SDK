@@ -41,5 +41,4 @@ public class GetSubscriptions
         this.getContext().getConsoleHelper().stopProgress();
         this.getContext().getConsoleHelper().writeObject( customerSubscriptions, "Customer Subscriptions" );
     }
-
 }

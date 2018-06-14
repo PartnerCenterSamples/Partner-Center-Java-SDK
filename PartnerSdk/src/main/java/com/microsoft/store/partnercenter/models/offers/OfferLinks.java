@@ -29,5 +29,4 @@ public class OfferLinks
     {
         __LearnMore = value;
     }
-
 }

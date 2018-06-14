@@ -40,37 +40,48 @@ public class CreatePartnerServiceRequest
     @Override
     protected void runScenario()
     {
+        IPartner partnerOperations = this.getContext().getUserPartnerOperations();
         String supportTopicId =
             this.getContext().getConfiguration().getScenarioSettings().get( "DefaultSupportTopicId" );
-        IPartner partnerOperations = this.getContext().getUserPartnerOperations();
+        
         if ( StringHelper.isNullOrEmpty( supportTopicId.toString() ) )
         {
             this.getContext().getConsoleHelper().startProgress( "Fetching support topics" );
+
             // Get the list of support topics
             ResourceCollection<SupportTopic> supportTopicsCollection =
                 partnerOperations.getServiceRequests().getSupportTopics().get();
+            
             this.getContext().getConsoleHelper().stopProgress();
             this.getContext().getConsoleHelper().writeObject( supportTopicsCollection, "Support topics" );
+            
             // prompt the user the enter the support topic ID
             supportTopicId =
-                this.getContext().getConsoleHelper().readNonEmptyString( "Please enter the support topic ID ",
-                                                                         "The support topic ID can't be empty" );
+                this.getContext().getConsoleHelper().readNonEmptyString( 
+                    "Please enter the support topic ID ",
+                    "The support topic ID can't be empty" );
         }
         else
         {
-            ConsoleHelper.getInstance().warning( MessageFormat.format( "Found support topic ID: {0} in configuration.",
-                                                                       supportTopicId ) );
+            ConsoleHelper.getInstance().warning( 
+                MessageFormat.format( 
+                    "Found support topic ID: {0} in configuration.",
+                    supportTopicId ) );
         }
+
         ServiceRequest serviceRequestToCreate = new ServiceRequest();
+        
         serviceRequestToCreate.setTitle( "TrialSR" );
         serviceRequestToCreate.setDescription( "Ignore this SR" );
         serviceRequestToCreate.setSeverity( ServiceRequestSeverity.CRITICAL );
         serviceRequestToCreate.setSupportTopicId( supportTopicId );
+        
         this.getContext().getConsoleHelper().startProgress( "Creating Service Request" );
+        
         ServiceRequest serviceRequest =
             partnerOperations.getServiceRequests().create( serviceRequestToCreate, "en-US" );
+            
         this.getContext().getConsoleHelper().stopProgress();
         this.getContext().getConsoleHelper().writeObject( serviceRequest, "Created Service Request" );
     }
-
 }

@@ -26,6 +26,13 @@ public interface IInvoiceCollection
      * @return invoice summary operations.
      */
     IInvoiceSummary getSummary();
+    
+    /**
+     * Retrieves the invoice summary collection operations.
+     * 
+     * @return The invoice summary collection operations.
+     */
+    IInvoiceSummaryCollection getSummaries();
 
     /**
      * Gets a single invoice operations.
@@ -47,5 +54,4 @@ public interface IInvoiceCollection
      * @return: The invoices.
      */
     ResourceCollection<Invoice> query( IQuery query );
-
 }

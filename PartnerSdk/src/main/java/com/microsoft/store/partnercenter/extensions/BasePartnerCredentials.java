@@ -114,5 +114,3 @@ public abstract class BasePartnerCredentials
         return;
     }
 }
-
-// await

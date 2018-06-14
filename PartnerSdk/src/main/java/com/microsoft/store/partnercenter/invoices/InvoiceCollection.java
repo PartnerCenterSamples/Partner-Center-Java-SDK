@@ -78,10 +78,19 @@ public class InvoiceCollection
      * 
      * @return The account balance.
      */
-    @Override
     public IInvoiceSummary getSummary()
     {
         return new InvoiceSummaryOperations( this.getPartner() );
+    }
+
+    /**
+     * Retrieves the invoice summary collection operations.
+     * 
+     * @return The invoice summary collection operations.
+     */
+    public IInvoiceSummaryCollection getSummaries()
+    { 
+        return new InvoiceSummaryCollectionOperations( this.getPartner() );
     }
 
     /**

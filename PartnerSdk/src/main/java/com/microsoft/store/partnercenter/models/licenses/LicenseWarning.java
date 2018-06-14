@@ -62,5 +62,4 @@ public class LicenseWarning {
     {
     	__ServicePlans = value;
     }
-
 }

@@ -15,6 +15,7 @@ import com.microsoft.store.partnercenter.models.customers.Customer;
 import com.microsoft.store.partnercenter.models.invoices.Invoice;
 import com.microsoft.store.partnercenter.models.invoices.InvoiceLineItem;
 import com.microsoft.store.partnercenter.models.offers.Offer;
+import com.microsoft.store.partnercenter.models.products.Product;
 import com.microsoft.store.partnercenter.models.servicerequests.ServiceRequest;
 import com.microsoft.store.partnercenter.models.users.CustomerUser;
 
@@ -64,4 +65,8 @@ public interface IResourceCollectionEnumeratorContainer
      */
     IUtilizationCollectionEnumeratorContainer getUtilization();
 
+    /**
+     * Gets a factory that creates product collection enumerators.
+     */
+     IResourceCollectionEnumeratorFactory<ResourceCollection<Product>> getProducts();
 }

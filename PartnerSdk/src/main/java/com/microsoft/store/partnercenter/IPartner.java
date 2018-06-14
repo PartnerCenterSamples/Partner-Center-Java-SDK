@@ -6,21 +6,26 @@
 
 package com.microsoft.store.partnercenter;
 
+import com.microsoft.store.partnercenter.analytics.IPartnerAnalyticsCollection;
 import com.microsoft.store.partnercenter.auditrecords.IAuditRecordsCollection;
 import com.microsoft.store.partnercenter.countryvalidationrules.ICountryValidationRulesCollection;
 import com.microsoft.store.partnercenter.customers.ICustomerCollection;
 import com.microsoft.store.partnercenter.domains.IDomainCollection;
 import com.microsoft.store.partnercenter.enumerators.IResourceCollectionEnumeratorContainer;
+import com.microsoft.store.partnercenter.extensions.IExtensions;
 import com.microsoft.store.partnercenter.genericoperations.ICountrySelector;
 import com.microsoft.store.partnercenter.invoices.IInvoiceCollection;
 import com.microsoft.store.partnercenter.offers.IOfferCategoryCollection;
 import com.microsoft.store.partnercenter.offers.IOfferCollection;
+import com.microsoft.store.partnercenter.products.IProductCollection;
 import com.microsoft.store.partnercenter.profiles.IPartnerProfileCollection;
 import com.microsoft.store.partnercenter.ratecards.IRateCardCollection;
+import com.microsoft.store.partnercenter.relationships.IRelationshipCollection;
 import com.microsoft.store.partnercenter.requestcontext.IRequestContext;
 import com.microsoft.store.partnercenter.serviceincidents.IServiceIncidentCollection;
 import com.microsoft.store.partnercenter.servicerequests.IPartnerServiceRequestCollection;
 import com.microsoft.store.partnercenter.usage.IPartnerUsageSummary;
+import com.microsoft.store.partnercenter.validations.IValidationOperations;
 
 /**
  * The main entry point into using the partner SDK functionality. Represents a partner and encapsulates all the behavior
@@ -103,4 +108,29 @@ public interface IPartner
      * Gets the rate card operations available to the partner.
      */
     IRateCardCollection getRateCards();
+
+    /***
+     * Gets the analytics collection operations.
+     */
+    IPartnerAnalyticsCollection getAnalytics();
+
+    /***
+     * Gets the extensions operations available to the partner.
+     */
+    IExtensions getExtensions();
+
+    /***
+     * Gets the product operations available to the partner.
+     */
+    IProductCollection getProducts();
+
+    /***
+     * Gets the relationship collection operations available to the partner.
+     */    
+    IRelationshipCollection getRelationships();
+
+    /***
+     * Gets the validation operations available to the partner.
+     */    
+    IValidationOperations getValidations();
 }

@@ -21,5 +21,4 @@ public interface ICountryValidationRules
      * @return: The validation rules for the country.
      */
     CountryValidationRules get();
-
 }

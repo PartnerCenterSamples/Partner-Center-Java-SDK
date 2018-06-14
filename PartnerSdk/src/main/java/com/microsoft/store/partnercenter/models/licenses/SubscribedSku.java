@@ -157,5 +157,4 @@ public class SubscribedSku extends ResourceBase {
     {
     	__CapabilityStatus = value;
     }
-
 }

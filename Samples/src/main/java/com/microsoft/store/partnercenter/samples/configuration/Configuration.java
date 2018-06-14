@@ -76,5 +76,4 @@ public class Configuration
     {
         this.scenarioSettings = scenarioSettings;
     }
-
 }

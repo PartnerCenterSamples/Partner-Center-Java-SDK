@@ -41,36 +41,40 @@ public class CreateCustomer
         IPartner partnerOperations = this.getContext().getUserPartnerOperations();
 
         Address address = new Address();
-        address.setFirstName( "Engineer" );
-        address.setLastName( "In Test" );
-        address.setAddressLine1( "4001 156th Ave" );
-        address.setCity( "Redmond" );
+
+        address.setFirstName( "Gena" );
+        address.setLastName( "Soto" );
+        address.setAddressLine1( "One Microsoft Way" );
         address.setCity( "Redmond" );
         address.setState( "WA" );
         address.setCountry( "US" );
         address.setPostalCode( "98052" );
-        address.setPhoneNumber( "4257778899" );
+        address.setPhoneNumber( "4255550101" );
 
         CustomerBillingProfile billingProfile = new CustomerBillingProfile();
-        billingProfile.setCulture( "EN-US" );
-        billingProfile.setEmail( "SomeEmail@MS.com" );
-        billingProfile.setLanguage( "En" );
-        billingProfile.setCompanyName( "Some Company" + new Random().nextInt() );
+        
+        billingProfile.setCulture( "en-US" );
+        billingProfile.setEmail( "gena@wingtiptoys.com" );
+        billingProfile.setLanguage( "en" );
+        billingProfile.setCompanyName( "Wingtip Toys" + new Random().nextInt() );
         billingProfile.setDefaultAddress( address );
 
         CustomerCompanyProfile companyProfile = new CustomerCompanyProfile();
-        companyProfile.setDomain( "SampleApplication" + Math.abs( new Random().nextInt() ) + ".onmicrosoft.com" );
+        
+        companyProfile.setDomain( "WingtipToys" + Math.abs( new Random().nextInt() ) + ".onmicrosoft.com" );
 
         Customer customerToCreate = new Customer();
+        
         customerToCreate.setBillingProfile( billingProfile );
         customerToCreate.setCompanyProfile( companyProfile );
 
-        this.getContext().getConsoleHelper().writeObject( customerToCreate, "New user Information" );
-        this.getContext().getConsoleHelper().startProgress( "Creating user" );
+        this.getContext().getConsoleHelper().writeObject( customerToCreate, "New customer information" );
+        this.getContext().getConsoleHelper().startProgress( "Creating customer" );
+        
         Customer newCustomer = partnerOperations.getCustomers().create( customerToCreate );
+        
         this.getContext().getConsoleHelper().stopProgress();
         this.getContext().getConsoleHelper().success( "Success!" );
-        this.getContext().getConsoleHelper().writeObject( newCustomer, "Created user Information" );
+        this.getContext().getConsoleHelper().writeObject( newCustomer, "Created customer information" );
     }
-
 }

@@ -61,6 +61,31 @@ public class SubscriptionOperations
      */
     private IUtilizationCollection subscriptionUtilizationOperations;
 
+    /***
+     * A reference to the current subscription's provisioning status operations.
+     */
+    private ISubscriptionProvisioningStatus subscriptionProvisioningStatusOperations;
+
+    /***
+     * A reference to the current subscription's support contact operations.
+     */
+    private ISubscriptionSupportContact subscriptionSupportContactOperations;
+
+    /***
+     * A reference to the current subscription's registration status operations.
+     */
+    private ISubscriptionRegistration subscriptionRegistrationOperations;
+
+    /***
+     * A reference to the current subscription's registration status operations.
+     */
+    private ISubscriptionRegistrationStatus subscriptionRegistrationStatusOperations; 
+
+    /***
+     * A lazy reference to the current subscription's conversion operations.
+     */
+    private ISubscriptionConversionCollection subscriptionConversionOperations; 
+
     /**
      * Initializes a new instance of the {@link #SubscriptionOperations} class.
      * 
@@ -154,6 +179,68 @@ public class SubscriptionOperations
         return this.subscriptionUtilizationOperations;
     }
 
+    /***
+     * Gets the current subscription's provisioning status operations.
+     */
+    public ISubscriptionProvisioningStatus getProvisioningStatus()
+    {
+        if(subscriptionProvisioningStatusOperations == null)
+        {
+            subscriptionProvisioningStatusOperations = new SubscriptionProvisioningStatusOperations(this.getPartner(), this.getContext().getItem1(), this.getContext().getItem2());
+        }
+
+        return subscriptionProvisioningStatusOperations;
+    }
+
+    /***
+     * Gets the current subscription's support contact operations.
+     */
+    public ISubscriptionSupportContact getSupportContact()
+    {
+        if(subscriptionSupportContactOperations == null)
+        {
+            subscriptionSupportContactOperations = new SubscriptionSupportContactOperations(this.getPartner(), this.getContext().getItem1(), this.getContext().getItem2());
+        }
+
+        return subscriptionSupportContactOperations; 
+    }
+
+    /***
+     * Gets the current subscription's registration operations.
+     */
+    public ISubscriptionRegistration getRegistration()
+    {
+        if(subscriptionRegistrationOperations == null)
+        {
+            subscriptionRegistrationOperations = new SubscriptionRegistrationOperations(this.getPartner(), this.getContext().getItem1(), this.getContext().getItem2());
+        }
+
+        return subscriptionRegistrationOperations;
+    }
+
+    /***
+     * Gets the current subscription's registration status operations.
+     */
+    public ISubscriptionRegistrationStatus getRegistrationStatus()
+    {
+        if (subscriptionRegistrationStatusOperations == null)
+        {
+            subscriptionRegistrationStatusOperations = new SubscriptionRegistrationStatusOperations(this.getPartner(), this.getContext().getItem1(), this.getContext().getItem2());
+        }
+
+        return subscriptionRegistrationStatusOperations;
+    }
+
+    public ISubscriptionConversionCollection getConversions()
+    {
+        if (this.subscriptionConversionOperations == null)
+        {
+            subscriptionConversionOperations = new SubscriptionConversionCollectionOperations(this.getPartner(), this.getContext().getItem1(), this.getContext().getItem2());
+        }
+        
+        return subscriptionConversionOperations; 
+    }
+
     /**
      * Gets the subscription.
      * 
@@ -162,18 +249,15 @@ public class SubscriptionOperations
     @Override
     public Subscription get()
     {
-        {
-            IPartnerServiceProxy<Subscription, Subscription> partnerServiceProxy =
-                new PartnerServiceProxy<Subscription, Subscription>( new TypeReference<Subscription>()
-                {
-                }, this.getPartner(), MessageFormat.format( PartnerService.getInstance().getConfiguration().getApis().get( "GetSubscription" ).getPath(),
-                                                            this.getContext().getItem1(), this.getContext().getItem2(),
-                                                            Locale.US ) );
-            return partnerServiceProxy.get();
-        }
+        IPartnerServiceProxy<Subscription, Subscription> partnerServiceProxy =
+            new PartnerServiceProxy<Subscription, Subscription>( new TypeReference<Subscription>()
+            {
+            }, this.getPartner(), MessageFormat.format( PartnerService.getInstance().getConfiguration().getApis().get( "GetSubscription" ).getPath(),
+                                                        this.getContext().getItem1(), this.getContext().getItem2(),
+                                                        Locale.US ) );
+        return partnerServiceProxy.get();
     }
 
-    // await
     /**
      * Patches a subscription.
      * 

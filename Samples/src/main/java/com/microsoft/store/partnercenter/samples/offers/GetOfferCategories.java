@@ -48,5 +48,4 @@ public class GetOfferCategories
                                                           MessageFormat.format( "Offer categories in {0}",
                                                                                 countryCode ) );
     }
-
 }

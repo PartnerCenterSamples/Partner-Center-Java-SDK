@@ -6,14 +6,12 @@
 
 package com.microsoft.store.partnercenter.models.partners;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.microsoft.store.partnercenter.models.ResourceBaseWithLinks;
 import com.microsoft.store.partnercenter.models.StandardResourceLinks;
 
 /**
  * Partner Support Profile
  */
-@JsonIgnoreProperties( { "profileType" } )
 public class SupportProfile
     extends ResourceBaseWithLinks<StandardResourceLinks>
 {
@@ -61,5 +59,4 @@ public class SupportProfile
     {
         __Website = value;
     }
-
 }

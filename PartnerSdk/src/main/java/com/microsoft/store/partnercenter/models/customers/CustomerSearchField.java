@@ -15,10 +15,21 @@ public enum CustomerSearchField
      * Customer Company name
      */
     COMPANY_NAME( "CompanyName" ), 
+    
     /**
      * Customer domain name
      */
-    DOMAIN_NAME( "Domain" );
+    DOMAIN_NAME( "Domain" ),
+
+    /**
+     * The indirect reseller
+     */
+    INDIRECT_RESELLER( "IndirectReseller" ),
+
+    /**
+     * The indirect CSP
+     */
+    INDIRECT_CLOUD_SOLUTION_PROVIDER ( "IndirectCloudSolutionProvider" );
 
     private String name;
 

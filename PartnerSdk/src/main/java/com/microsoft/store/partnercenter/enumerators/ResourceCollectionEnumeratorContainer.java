@@ -18,6 +18,7 @@ import com.microsoft.store.partnercenter.models.customers.Customer;
 import com.microsoft.store.partnercenter.models.invoices.Invoice;
 import com.microsoft.store.partnercenter.models.invoices.InvoiceLineItem;
 import com.microsoft.store.partnercenter.models.offers.Offer;
+import com.microsoft.store.partnercenter.models.products.Product;
 import com.microsoft.store.partnercenter.models.servicerequests.ServiceRequest;
 import com.microsoft.store.partnercenter.models.users.CustomerUser;
 
@@ -69,6 +70,11 @@ public class ResourceCollectionEnumeratorContainer
     private IUtilizationCollectionEnumeratorContainer utilizationRecordEnumeratorContainer;
 
     /**
+     * A reference to a product enumerator factory.
+     */
+    private IndexBasedCollectionEnumeratorFactory<Product, ResourceCollection<Product>> productEnumeratorFactory;
+
+    /**
      * Initializes a new instance of the {@link #ResourceCollectionEnumeratorContainer} class.
      * 
      * @param rootPartnerOperations The root partner operations instance.
@@ -81,16 +87,16 @@ public class ResourceCollectionEnumeratorContainer
     /**
      * Gets a factory that creates offer collection enumerators.
      */
-    @Override
     public IResourceCollectionEnumeratorFactory<ResourceCollection<Offer>> getOffers()
     {
         if ( this.offerEnumeratorFactory == null )
         {
             this.offerEnumeratorFactory =
-                new IndexBasedCollectionEnumeratorFactory<Offer, ResourceCollection<Offer>>( this.getPartner(),
-                                                                                             new TypeReference<ResourceCollection<Offer>>()
-                                                                                             {
-                                                                                             } );
+                new IndexBasedCollectionEnumeratorFactory<Offer, ResourceCollection<Offer>>( 
+                    this.getPartner(),
+                    new TypeReference<ResourceCollection<Offer>>()
+                    {
+                    } );
         }
         return this.offerEnumeratorFactory;
     }
@@ -98,16 +104,16 @@ public class ResourceCollectionEnumeratorContainer
     /**
      * Gets a factory that creates customer collection enumerators.
      */
-    @Override
     public IResourceCollectionEnumeratorFactory<SeekBasedResourceCollection<Customer>> getCustomers()
     {
         if ( this.customerEnumeratorFactory == null )
         {
             this.customerEnumeratorFactory =
-                new IndexBasedCollectionEnumeratorFactory<Customer, SeekBasedResourceCollection<Customer>>( this.getPartner(),
-                                                                                                        new TypeReference<SeekBasedResourceCollection<Customer>>()
-                                                                                                        {
-                                                                                                        } );
+                new IndexBasedCollectionEnumeratorFactory<Customer, SeekBasedResourceCollection<Customer>>( 
+                    this.getPartner(),
+                    new TypeReference<SeekBasedResourceCollection<Customer>>()
+                    {
+                    } );
         }
         return this.customerEnumeratorFactory;
     }
@@ -115,16 +121,16 @@ public class ResourceCollectionEnumeratorContainer
     /**
      * Gets a factory that creates customer collection enumerators.
      */
-    @Override
     public IResourceCollectionEnumeratorFactory<SeekBasedResourceCollection<CustomerUser>> getCustomerUsers()
     {
         if ( this.customerUserEnumeratorFactory == null )
         {
             this.customerUserEnumeratorFactory =
-                new IndexBasedCollectionEnumeratorFactory<CustomerUser, SeekBasedResourceCollection<CustomerUser>>( this.getPartner(),
-                                                                                                        new TypeReference<SeekBasedResourceCollection<CustomerUser>>()
-                                                                                                        {
-                                                                                                        } );
+                new IndexBasedCollectionEnumeratorFactory<CustomerUser, SeekBasedResourceCollection<CustomerUser>>( 
+                    this.getPartner(),
+                    new TypeReference<SeekBasedResourceCollection<CustomerUser>>()
+                    {
+                    } );
         }
         return this.customerUserEnumeratorFactory;
     }
@@ -132,76 +138,76 @@ public class ResourceCollectionEnumeratorContainer
     /**
      * Gets a factory that creates invoice collection enumerators.
      */
-    @Override
     public IResourceCollectionEnumeratorFactory<ResourceCollection<Invoice>> getInvoices()
     {
         if ( this.invoiceEnumeratorFactory == null )
         {
             this.invoiceEnumeratorFactory =
-                new IndexBasedCollectionEnumeratorFactory<Invoice, ResourceCollection<Invoice>>( this.getPartner(),
-                                                                                                      new TypeReference<ResourceCollection<Invoice>>()
-                                                                                                      {
-                                                                                                      } );
+                new IndexBasedCollectionEnumeratorFactory<Invoice, ResourceCollection<Invoice>>( 
+                    this.getPartner(),
+                    new TypeReference<ResourceCollection<Invoice>>()
+                    {
+                    } );
         }
+
         return this.invoiceEnumeratorFactory;
     }
 
     /**
      * Gets a factory that creates service request collection enumerators.
      */
-    @Override
     public IResourceCollectionEnumeratorFactory<ResourceCollection<ServiceRequest>> getServiceRequests()
     {
         if ( this.serviceRequestEnumeratorFactory == null )
         {
             this.serviceRequestEnumeratorFactory =
                 new IndexBasedCollectionEnumeratorFactory<ServiceRequest, ResourceCollection<ServiceRequest>>( this.getPartner(),
-                                                                                                                    new TypeReference<ResourceCollection<ServiceRequest>>()
-                                                                                                                    {
-                                                                                                                    } );
+                    new TypeReference<ResourceCollection<ServiceRequest>>()
+                    {
+                    } );
         }
+
         return this.serviceRequestEnumeratorFactory;
     }
 
     /**
      * Gets a factory that creates invoice line item collection enumerators.
      */
-    @Override
     public IResourceCollectionEnumeratorFactory<ResourceCollection<InvoiceLineItem>> getInvoiceLineItems()
     {
         if ( this.invoiceLineItemEnumeratorFactory == null )
         {
             this.invoiceLineItemEnumeratorFactory =
                 new IndexBasedCollectionEnumeratorFactory<InvoiceLineItem, ResourceCollection<InvoiceLineItem>>( this.getPartner(),
-                                                                                                                      new TypeReference<ResourceCollection<InvoiceLineItem>>()
-                                                                                                                      {
-                                                                                                                      } );
+                    new TypeReference<ResourceCollection<InvoiceLineItem>>()
+                    {
+                    } );
         }
+
         return this.invoiceLineItemEnumeratorFactory;
     }
 
     /**
      * Gets a factory that creates audit records collection enumerators.
      */
-    @Override
     public IResourceCollectionEnumeratorFactory<SeekBasedResourceCollection<AuditRecord>> getAuditRecords()
     {
         if ( this.auditRecordEnumeratorFactory == null )
         {
             this.auditRecordEnumeratorFactory =
                 new IndexBasedCollectionEnumeratorFactory<AuditRecord, SeekBasedResourceCollection<AuditRecord>>
-            ( 
-            	this.getPartner(),
-            	new TypeReference<SeekBasedResourceCollection<AuditRecord>>(){} 
-            );
+                ( 
+                    this.getPartner(),
+                    new TypeReference<SeekBasedResourceCollection<AuditRecord>>(){} 
+                );
         }
+
         return this.auditRecordEnumeratorFactory;
     }
 
     /**
      * Gets factories that create enumerators for utilization records for different subscriptions.
      */
-    @Override
     public IUtilizationCollectionEnumeratorContainer getUtilization()
     {
         if ( this.utilizationRecordEnumeratorContainer == null )
@@ -209,7 +215,25 @@ public class ResourceCollectionEnumeratorContainer
             this.utilizationRecordEnumeratorContainer =
                 new UtilizationCollectionEnumeratorContainer( this.getPartner() );
         }
+
         return this.utilizationRecordEnumeratorContainer;
     }
 
+    /**
+     * Gets a factory that creates product collection enumerators.
+     */
+    public IResourceCollectionEnumeratorFactory<ResourceCollection<Product>> getProducts()
+    {
+        if ( this.productEnumeratorFactory == null )
+        {
+            this.productEnumeratorFactory =
+                new IndexBasedCollectionEnumeratorFactory<Product, ResourceCollection<Product>>(
+                    this.getPartner(),
+                    new TypeReference<ResourceCollection<Product>>()
+                    {
+                    } );
+        }
+
+        return this.productEnumeratorFactory;
+    }
 }

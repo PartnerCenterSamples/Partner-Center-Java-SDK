@@ -116,7 +116,4 @@ public class SubscriptionCollectionOperations
                                                         this.getContext(), Locale.US ) );
         return partnerServiceProxy.get();
     }
-
 }
-
-// await

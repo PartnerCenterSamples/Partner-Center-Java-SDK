@@ -48,4 +48,16 @@ public enum ResourceType {
      */
     @JsonProperty("third_party_add_on")
     ThirdPartyAddOn,
+
+    /***
+     * MPN association Resource
+     */
+    @JsonProperty("mpn_association")
+    MpnAssociation,
+
+    /***
+     * Transfer Resource
+     */
+    @JsonProperty("transfer")
+    Transfer
 }

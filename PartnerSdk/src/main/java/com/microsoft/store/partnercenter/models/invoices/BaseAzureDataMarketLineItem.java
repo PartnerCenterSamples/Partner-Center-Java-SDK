@@ -303,7 +303,6 @@ public abstract class BaseAzureDataMarketLineItem extends InvoiceLineItem
 	 */
     @Override
 	public BillingProvider getBillingProvider() {
-		return BillingProvider.AZUREDATAMARKET;
+		return BillingProvider.AzureDataMarket;
 	}
-
 }

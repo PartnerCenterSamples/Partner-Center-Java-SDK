@@ -34,7 +34,7 @@ public class InvoiceDetail
     /**
      * Gets or sets the billing provider
      */
-    private BillingProvider __BillingProvider = BillingProvider.NONE;
+    private BillingProvider __BillingProvider = BillingProvider.None;
 
     public BillingProvider getBillingProvider()
     {
@@ -60,5 +60,4 @@ public class InvoiceDetail
     {
         __DetailLink = value;
     }
-
 }

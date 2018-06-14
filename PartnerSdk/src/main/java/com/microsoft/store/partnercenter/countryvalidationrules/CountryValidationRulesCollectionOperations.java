@@ -13,7 +13,6 @@ public class CountryValidationRulesCollectionOperations
 	extends BasePartnerComponentString
 	implements ICountryValidationRulesCollection 
 {
-
 	/***
 	 * Initializes a new instance of the CountryValidationRulesCollectionOperations class.
 	 * @param rootPartnerOperations:  root partner operations instance.
@@ -26,12 +25,11 @@ public class CountryValidationRulesCollectionOperations
 	/***
 	 * Obtains a specific behavior for country validation rules.
 	 * 
-	 * @return: The country validation rules operations
 	 * @param country: The country
+	 * @return: The country validation rules operations
 	 */
 	@Override
 	public ICountryValidationRules byCountry( String country ) {
 		return new CountryValidationRulesOperations( this.getPartner(), country );
 	}
-
 }

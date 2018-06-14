@@ -7,7 +7,6 @@
 package com.microsoft.store.partnercenter.offers;
 
 import java.text.MessageFormat;
-import java.util.Locale;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.microsoft.store.partnercenter.BasePartnerComponentString;
@@ -15,6 +14,7 @@ import com.microsoft.store.partnercenter.IPartner;
 import com.microsoft.store.partnercenter.PartnerService;
 import com.microsoft.store.partnercenter.models.ResourceCollection;
 import com.microsoft.store.partnercenter.models.offers.Offer;
+import com.microsoft.store.partnercenter.models.utils.KeyValuePair;
 import com.microsoft.store.partnercenter.network.IPartnerServiceProxy;
 import com.microsoft.store.partnercenter.network.PartnerServiceProxy;
 import com.microsoft.store.partnercenter.utils.StringHelper;
@@ -26,7 +26,6 @@ public class CustomerOfferCollectionOperations
 	extends BasePartnerComponentString 
 	implements ICustomerOfferCollection
 {
-
 	/***
 	 * Initializes a new instance of the CustomerOfferCollectionOperations class.
 	 * 
@@ -45,24 +44,50 @@ public class CustomerOfferCollectionOperations
 	/***
 	 * Gets the offers available to customer from partner.
 	 */
-	@Override
 	public ResourceCollection<Offer> get()
 	{
         IPartnerServiceProxy<ResourceCollection<Offer>, ResourceCollection<Offer>> partnerServiceProxy =
-                new PartnerServiceProxy<ResourceCollection<Offer>, ResourceCollection<Offer>>( new TypeReference<ResourceCollection<Offer>>()
-                {
-                }, this.getPartner(), MessageFormat.format( PartnerService.getInstance().getConfiguration().getApis().get( "GetCustomerOffers" ).getPath(),
-                                                            Locale.US ) );
+                new PartnerServiceProxy<ResourceCollection<Offer>, ResourceCollection<Offer>>( 
+					new TypeReference<ResourceCollection<Offer>>()
+					{
+					}, 
+					this.getPartner(),
+					MessageFormat.format( 
+						PartnerService.getInstance().getConfiguration().getApis().get( "GetCustomerOffers" ).getPath(),
+						this.getContext()) );
+
         return partnerServiceProxy.get();
 	}
 
-	/***
-	 * 
-	 */
-	@Override
+    /***
+     *  Gets a segment of the offers available to customer from partner..
+     *  
+	 *  @param name="offset": The starting index.
+     *  @param name="size": The desired segment size.
+     *  @return: The required offers segment.
+     */
 	public ResourceCollection<Offer> get(int offset, int size)
 	{
-		return null;
-	}
+		IPartnerServiceProxy<ResourceCollection<Offer>, ResourceCollection<Offer>> partnerServiceProxy =
+		new PartnerServiceProxy<ResourceCollection<Offer>, ResourceCollection<Offer>>( 
+			new TypeReference<ResourceCollection<Offer>>()
+			{
+			}, 
+			this.getPartner(),
+			MessageFormat.format( 
+				PartnerService.getInstance().getConfiguration().getApis().get( "GetCustomerOffers" ).getPath(),
+				this.getContext()) );
 
+		partnerServiceProxy.getUriParameters().add(
+			new KeyValuePair<String, String>(
+				PartnerService.getInstance().getConfiguration().getApis().get( "GetCustomerOffers" ).getParameters().get( "Offset" ),
+				Integer.toString(offset)));
+
+		partnerServiceProxy.getUriParameters().add(
+			new KeyValuePair<String, String>(
+				PartnerService.getInstance().getConfiguration().getApis().get( "GetCustomerOffers" ).getParameters().get( "Size" ),
+				Integer.toString(size)));
+
+		return partnerServiceProxy.get();
+	}
 }

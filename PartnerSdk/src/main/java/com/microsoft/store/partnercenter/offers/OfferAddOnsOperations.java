@@ -7,7 +7,6 @@
 package com.microsoft.store.partnercenter.offers;
 
 import java.text.MessageFormat;
-import java.util.Locale;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.microsoft.store.partnercenter.BasePartnerComponent;
@@ -37,7 +36,8 @@ public class OfferAddOnsOperations
     public OfferAddOnsOperations( IPartner rootPartnerOperations, String offerId, String country )
     {
         super( rootPartnerOperations, new Tuple<String, String>( offerId, country ) );
-        // ParameterValidator.Required(offerId, "offerId must be set");
+
+        ParameterValidator.isValidCountryCode(country);
     }
 
     /**
@@ -46,17 +46,22 @@ public class OfferAddOnsOperations
      * @param country The country.
      * @return The offer add-ons.
      */
-    @Override
     public ResourceCollection<Offer> get()
     {
         IPartnerServiceProxy<ResourceCollection<Offer>, ResourceCollection<Offer>> partnerServiceProxy =
-            new PartnerServiceProxy<ResourceCollection<Offer>, ResourceCollection<Offer>>( new TypeReference<ResourceCollection<Offer>>()
-            {
-            }, this.getPartner(), MessageFormat.format( PartnerService.getInstance().getConfiguration().getApis().get( "GetOfferAddons" ).getPath(),
-                                                        Locale.US ) );
+            new PartnerServiceProxy<ResourceCollection<Offer>, ResourceCollection<Offer>>( 
+                new TypeReference<ResourceCollection<Offer>>()
+                {
+                },
+                this.getPartner(), 
+                MessageFormat.format(
+                    PartnerService.getInstance().getConfiguration().getApis().get( "GetOfferAddons" ).getPath(),
+                    this.getContext().getItem1()));
 
-        partnerServiceProxy.getUriParameters().add( new KeyValuePair<String, String>( PartnerService.getInstance().getConfiguration().getApis().get( "GetOfferAddons" ).getParameters().get( "Country" ),
-                                                                                      this.getContext().getItem2() ) );
+        partnerServiceProxy.getUriParameters().add( 
+            new KeyValuePair<String, String>( PartnerService.getInstance().getConfiguration().getApis().get( "GetOfferAddons" ).getParameters().get( "Country" ),
+            this.getContext().getItem2() ) );
+
         return partnerServiceProxy.get();
     }
 
@@ -76,17 +81,22 @@ public class OfferAddOnsOperations
         IPartnerServiceProxy<Offer, ResourceCollection<Offer>> partnerServiceProxy =
             new PartnerServiceProxy<Offer, ResourceCollection<Offer>>( new TypeReference<ResourceCollection<Offer>>()
             {
-            }, this.getPartner(), MessageFormat.format( PartnerService.getInstance().getConfiguration().getApis().get( "GetOfferAddons" ).getPath(),
-                                                        Locale.US ) );
+            }, 
+            this.getPartner(), 
+            PartnerService.getInstance().getConfiguration().getApis().get( "GetOfferAddons" ).getPath());
 
-        partnerServiceProxy.getUriParameters().add( new KeyValuePair<String, String>( PartnerService.getInstance().getConfiguration().getApis().get( "GetOfferAddons" ).getParameters().get( "Country" ),
-                                                                                      this.getContext().getItem2() ) );
-        partnerServiceProxy.getUriParameters().add( new KeyValuePair<String, String>( PartnerService.getInstance().getConfiguration().getApis().get( "GetOfferAddons" ).getParameters().get( "Offset" ),
-                                                                                      String.valueOf( offset ) ) );
-        partnerServiceProxy.getUriParameters().add( new KeyValuePair<String, String>( PartnerService.getInstance().getConfiguration().getApis().get( "GetOfferAddons" ).getParameters().get( "Size" ),
-                                                                                      String.valueOf( size ) ) );
+        partnerServiceProxy.getUriParameters().add( new KeyValuePair<String, String>( 
+            PartnerService.getInstance().getConfiguration().getApis().get( "GetOfferAddons" ).getParameters().get( "Country" ),
+            this.getContext().getItem2() ) );
+        
+        partnerServiceProxy.getUriParameters().add( new KeyValuePair<String, String>( 
+            PartnerService.getInstance().getConfiguration().getApis().get( "GetOfferAddons" ).getParameters().get( "Offset" ),
+            String.valueOf( offset ) ) );
+       
+        partnerServiceProxy.getUriParameters().add( new KeyValuePair<String, String>( 
+            PartnerService.getInstance().getConfiguration().getApis().get( "GetOfferAddons" ).getParameters().get( "Size" ),
+            String.valueOf( size ) ) );
 
         return partnerServiceProxy.get();
     }
-
 }

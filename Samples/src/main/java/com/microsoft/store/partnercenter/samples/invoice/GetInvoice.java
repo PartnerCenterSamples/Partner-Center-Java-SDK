@@ -65,7 +65,5 @@ public class GetInvoice
                 this.getContext().getConsoleHelper().writeObject( invoiceDetail, "Invoice Line Items" );
             }
         }
-
     }
-
 }

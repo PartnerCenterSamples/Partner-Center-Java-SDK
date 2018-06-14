@@ -44,5 +44,4 @@ public class SubscriptionLinks
     {
         __ParentSubscription = value;
     }
-
 }

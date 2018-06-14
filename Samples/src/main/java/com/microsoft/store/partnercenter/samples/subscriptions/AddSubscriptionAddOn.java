@@ -83,5 +83,4 @@ public class AddSubscriptionAddOn
         this.getContext().getConsoleHelper().stopProgress();
         this.getContext().getConsoleHelper().writeObject( subscriptionAddOns, "Subscription add ons" );
     }
-
 }

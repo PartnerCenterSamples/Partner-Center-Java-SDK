@@ -108,5 +108,17 @@ public enum OperationType {
      * Restore customer user.
      */
     @JsonProperty("restore_customer_user")
-    RestoreCustomerUser
+    RestoreCustomerUser,
+
+    /***
+     *  Create MPN association.
+     */
+    @JsonProperty("create_mpn_association")
+    CreateMpnAssociation,
+
+    /***
+     *  Update MPN association.
+     */
+    @JsonProperty("update_mpn_association")
+    UpdateMpnAssociation
 }

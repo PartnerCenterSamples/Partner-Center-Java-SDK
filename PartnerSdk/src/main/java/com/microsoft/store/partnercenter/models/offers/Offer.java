@@ -9,15 +9,12 @@ package com.microsoft.store.partnercenter.models.offers;
 import java.net.URI;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.microsoft.store.partnercenter.models.ResourceBase;
 import com.microsoft.store.partnercenter.models.invoices.BillingType;
 
 /**
  * Represents a form of product availability to customer
  */
-//@JsonIgnoreProperties( { "isInternal", "conversionTargetOffers", "partnerQualifications", "hasAddOns",  "reselleeQualifications", "resellerQualifications", "acquisitionType" } )
-@JsonIgnoreProperties(ignoreUnknown=true)
 public class Offer
     extends ResourceBase
 {
@@ -329,4 +326,109 @@ public class Offer
     	__SalesGroupId = value;
     }
 
+    /**
+     * Gets or sets a value indicating whether this is a trial offer.
+     */
+    private Boolean __IsTrial;
+
+    public Boolean getIsTrial()
+    {
+        return __IsTrial;
+    }
+
+    public void setIsTrial( Boolean value )
+    {
+    	__IsTrial = value;
+    }
+
+    /**
+     * Gets or sets a value indicating whether this offer has any add-ons
+     */
+    private Boolean __HasAddOns;
+
+    public Boolean getHasAddOns()
+    {
+        return __HasAddOns;
+    }
+
+    public void setHasAddOns( Boolean value )
+    {
+    	__HasAddOns = value;
+    }
+
+    /**
+     * Gets or sets the amount of subscriptions that can be purchased of this offer
+     * based on the limitUnitOfMeasure
+     */
+    private int __Limit;
+
+    public int getLimit()
+    {
+        return __Limit;
+    }
+
+    public void setLimit( int value )
+    {
+    	__Limit = value;
+    }
+
+    /**
+     * Gets or sets the value used to indicate the type of the purchase limitation.
+     */
+    private String __LimitUnitOfMeasure;
+
+    public String getLimitUnitOfMeasure()
+    {
+        return __LimitUnitOfMeasure;
+    }
+
+    public void setLimitUnitOfMeasure( String value )
+    {
+    	__LimitUnitOfMeasure = value;
+    }
+
+    /**
+     * Gets or sets the supported billing cycles for the offer.
+     */
+    private List<BillingCycleType> __SupportedBillingCycles;
+
+    public List<BillingCycleType> getSupportedBillingCycles()
+    {
+        return __SupportedBillingCycles;
+    }
+
+    public void setSupportedBillingCycles( List<BillingCycleType> value )
+    {
+    	__SupportedBillingCycles = value;
+    }
+
+    /**
+     * Gets or sets qualifications required by the Partner in order to purchase the offer for a customer.
+     */
+    private String[] __ResellerQualifications;
+
+    public String[] getResellerQualifications()
+    {
+        return __ResellerQualifications;
+    }
+
+    public void setResellerQualifications( String[] value )
+    {
+    	__ResellerQualifications = value;
+    }
+
+    /**
+     * Gets or sets qualifications required by the customer for the partner to purchase it for the customer.
+     */
+    private String[] __ReselleeQualifications;
+
+    public String[] getReselleeQualifications()
+    {
+        return __ReselleeQualifications;
+    }
+
+    public void setReselleeQualifications( String[] value )
+    {
+    	__ResellerQualifications = value;
+    }
 }

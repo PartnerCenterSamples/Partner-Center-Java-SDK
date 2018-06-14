@@ -7,7 +7,6 @@
 package com.microsoft.store.partnercenter.offers;
 
 import java.text.MessageFormat;
-import java.util.Locale;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.microsoft.store.partnercenter.BasePartnerComponent;
@@ -48,6 +47,7 @@ public class OfferOperations
         {
             throw new IllegalArgumentException( "offerId has to be set." );
         }
+
         ParameterValidator.isValidCountryCode( country );
         
         this.addOns = new OfferAddOnsOperations( rootPartnerOperations, offerId, country );
@@ -56,7 +56,6 @@ public class OfferOperations
     /**
      * Gets the operations for the current offer's add-ons.
      */
-    @Override
     public IOfferAddOns getAddOns()
     {
         return this.addOns;
@@ -68,19 +67,22 @@ public class OfferOperations
      * @param country The country.
      * @return The offer details.
      */
-    @Override
     public Offer get()
     {
         IPartnerServiceProxy<Offer, Offer> partnerServiceProxy =
-            new PartnerServiceProxy<Offer, Offer>( new TypeReference<Offer>()
-            {
-            }, this.getPartner(), MessageFormat.format( PartnerService.getInstance().getConfiguration().getApis().get( "GetOffer" ).getPath(),
-                                                        this.getContext().getItem1(), Locale.US ) );
+            new PartnerServiceProxy<Offer, Offer>(
+                 new TypeReference<Offer>()
+                {
+                }, 
+                this.getPartner(), MessageFormat.format( 
+                    PartnerService.getInstance().getConfiguration().getApis().get( "GetOffer" ).getPath(),
+                    this.getContext().getItem1()) );
 
-        partnerServiceProxy.getUriParameters().add( new KeyValuePair<String, String>( PartnerService.getInstance().getConfiguration().getApis().get( "GetOffers" ).getParameters().get( "Country" ),
-                                                                                      this.getContext().getItem2() ) );
+        partnerServiceProxy.getUriParameters().add( 
+            new KeyValuePair<String, String>( 
+                PartnerService.getInstance().getConfiguration().getApis().get( "GetOffers" ).getParameters().get( "Country" ),
+                this.getContext().getItem2() ) );
 
         return partnerServiceProxy.get();
     }
-
 }

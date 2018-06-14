@@ -13,7 +13,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.microsoft.store.partnercenter.BasePartnerComponentString;
 import com.microsoft.store.partnercenter.IPartner;
 import com.microsoft.store.partnercenter.PartnerService;
-import com.microsoft.store.partnercenter.models.invoices.Summary;
+import com.microsoft.store.partnercenter.models.invoices.InvoiceSummary;
 import com.microsoft.store.partnercenter.network.IPartnerServiceProxy;
 import com.microsoft.store.partnercenter.network.PartnerServiceProxy;
 
@@ -35,10 +35,10 @@ public class InvoiceSummaryOperations
 	 * Retrieves summary of the partner's billing information.
 	 */
 	@Override
-	public Summary get()
+	public InvoiceSummary get()
 	{
-        IPartnerServiceProxy<Summary, Summary> partnerServiceProxy =
-                new PartnerServiceProxy<Summary, Summary>( new TypeReference<Summary>()
+        IPartnerServiceProxy<InvoiceSummary, InvoiceSummary> partnerServiceProxy =
+                new PartnerServiceProxy<InvoiceSummary, InvoiceSummary>( new TypeReference<InvoiceSummary>()
                 {
                 }, this.getPartner(), MessageFormat.format( PartnerService.getInstance().getConfiguration().getApis().get( "GetInvoiceSummary" ).getPath(),
                                                             this.getContext(), Locale.US ) );

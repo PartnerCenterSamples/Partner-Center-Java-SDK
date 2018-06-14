@@ -55,5 +55,4 @@ public class Product
     {
         __Unit = value;
     }
-
 }

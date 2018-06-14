@@ -14,9 +14,9 @@ public interface ICountryValidationRulesCollection
 {
     /***
      * Obtains behavior for a specific country's validation rules.
-     * @returns: The country validation rules operations.
-     * @param name="country": The country's ISO2 code.
+     *
+     * @param country The country's ISO2 code.
+     * @return: The country validation rules operations.
      */
     ICountryValidationRules byCountry( String country );
-
 }

@@ -13,35 +13,33 @@ import com.microsoft.store.partnercenter.samples.BasePartnerScenario;
 import com.microsoft.store.partnercenter.samples.IScenarioContext;
 
 /**
-* Gets a single customer details.
-*/
-public class GetSubscriptionsByOrder
- extends BasePartnerScenario
+ * Gets a single customer details.
+ */
+public class GetSubscriptionsByOrder extends BasePartnerScenario 
 {
- /**
-  * Initializes a new instance of the {@link #GetCustomerDetails} class.
-  * 
-  * @param context The scenario context.
-  */
- public GetSubscriptionsByOrder( IScenarioContext context )
- {
-     super( "Get customer subscriptions by order", context );
- }
+    /**
+     * Initializes a new instance of the {@link #GetCustomerDetails} class.
+     * 
+     * @param context The scenario context.
+     */
+    public GetSubscriptionsByOrder(IScenarioContext context) 
+    {
+        super("Get customer subscriptions by order", context);
+    }
 
- /**
-  * Executes the get customer details scenario.
-  */
- @Override
- protected void runScenario()
- {
-     String customerId = this.obtainCustomerId( "Enter the ID of the customer to retrieve" );
-     String orderId = this.obtainOrderId("Enter the ID of order to retrieve");
-     IPartner partnerOperations = this.getContext().getUserPartnerOperations();
-     this.getContext().getConsoleHelper().startProgress( "Retrieving customer subscriptions by order" );
-     ResourceCollection<Subscription> subscriptionsbyOrder = 
-    		 partnerOperations.getCustomers().byId( customerId ).getSubscriptions().byOrder( orderId ).get();
-     this.getContext().getConsoleHelper().stopProgress();
-     this.getContext().getConsoleHelper().writeObject( subscriptionsbyOrder, "Customer Subscriptions By Order" );        
- }
-
+    /**
+     * Executes the get customer details scenario.
+     */
+    @Override
+    protected void runScenario() 
+    {
+        String customerId = this.obtainCustomerId("Enter the ID of the customer to retrieve");
+        String orderId = this.obtainOrderId("Enter the ID of order to retrieve");
+        IPartner partnerOperations = this.getContext().getUserPartnerOperations();
+        this.getContext().getConsoleHelper().startProgress("Retrieving customer subscriptions by order");
+        ResourceCollection<Subscription> subscriptionsbyOrder = partnerOperations.getCustomers().byId(customerId)
+                .getSubscriptions().byOrder(orderId).get();
+        this.getContext().getConsoleHelper().stopProgress();
+        this.getContext().getConsoleHelper().writeObject(subscriptionsbyOrder, "Customer Subscriptions By Order");
+    }
 }

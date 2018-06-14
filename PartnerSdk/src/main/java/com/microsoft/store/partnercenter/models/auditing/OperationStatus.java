@@ -28,5 +28,11 @@ public enum OperationStatus {
      * Indicates that the operation is still in progress
      */
     @JsonProperty("progress")
-    Progress
+    Progress,
+
+    /***
+     * Indicates that the operation is declined
+     */
+    @JsonProperty("decline")
+    Decline
 }

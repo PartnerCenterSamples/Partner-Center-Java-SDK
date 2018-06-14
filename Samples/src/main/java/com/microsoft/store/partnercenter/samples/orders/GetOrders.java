@@ -37,8 +37,10 @@ public class GetOrders
         IPartner partnerOperations = this.getContext().getUserPartnerOperations();
         String customerId = this.obtainCustomerId( "Enter the ID of the customer whom to retrieve their orders" );
         this.getContext().getConsoleHelper().startProgress( "Retrieving customer orders" );
+
         ResourceCollection<Order> customerOrders =
             partnerOperations.getCustomers().byId( customerId ).getOrders().get();
+            
         this.getContext().getConsoleHelper().stopProgress();
         this.getContext().getConsoleHelper().writeObject( customerOrders, "Customer orders" );
     }

@@ -38,11 +38,10 @@ public class GetCustomerOfferCategories
 	{
        String customerIdToRetrieve = this.obtainCustomerId( "Enter the ID of the customer to retrieve offer categories for" );
 	   IPartner partnerOperations = this.getContext().getUserPartnerOperations();
-	   this.getContext().getConsoleHelper().startProgress( MessageFormat.format( "Getting offers for {0}",
-			   																	customerIdToRetrieve ) );
-	   ResourceCollection<OfferCategory> offers = partnerOperations.getCustomers().byId( customerIdToRetrieve ).getOfferCategories().get();
+	   this.getContext().getConsoleHelper().startProgress( 
+		   MessageFormat.format( "Getting offers for {0}", customerIdToRetrieve ) );
+	   ResourceCollection<OfferCategory> offers = partnerOperations.getCustomers().byId(customerIdToRetrieve).getOfferCategories().get();
 	   this.getContext().getConsoleHelper().stopProgress();
 	   this.getContext().getConsoleHelper().writeObject( offers, "Offers for Customer " + customerIdToRetrieve );
 	}
-
 }

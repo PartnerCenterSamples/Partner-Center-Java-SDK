@@ -65,12 +65,17 @@ public class AzureUtilizationCollectionOperations
 	@Override
 	public ResourceCollection<AzureUtilizationRecord> query( DateTime startTime, DateTime endTime,
 			AzureUtilizationGranularity granularity, boolean showDetails, int size )
-	{
+	{     
         IPartnerServiceProxy<AzureUtilizationRecord, ResourceCollection<AzureUtilizationRecord>> partnerServiceProxy = 
         		new PartnerServiceProxy<AzureUtilizationRecord, ResourceCollection<AzureUtilizationRecord>>( new TypeReference<ResourceCollection<AzureUtilizationRecord>>()
                 {
-                }, this.getPartner(), MessageFormat.format( PartnerService.getInstance().getConfiguration().getApis().get( "GetAzureUtilizationRecords" ).getPath(),
-                											this.getContext().getItem1(), this.getContext().getItem2(), Locale.US ) );
+                }, 
+                this.getPartner(),
+                MessageFormat.format( 
+                    PartnerService.getInstance().getConfiguration().getApis().get( "GetAzureUtilizationRecords" ).getPath(),
+                    this.getContext().getItem1(),
+                    this.getContext().getItem2(), 
+                    Locale.US ) );
 
         if ( startTime != null )
         {
@@ -79,7 +84,7 @@ public class AzureUtilizationCollectionOperations
             	new KeyValuePair<String, String>
             	(
 	            	PartnerService.getInstance().getConfiguration().getApis().get( "GetAzureUtilizationRecords" ).getParameters().get( "StartTime" ),
-	            	startTime.toString( "yyyy-MM-ddTHH:mm:ssZ" ) 
+                    startTime.toString("yyyy-MM-dd'T'HH:mm:ssZ")
             	) 
 	        );
         }
@@ -91,7 +96,7 @@ public class AzureUtilizationCollectionOperations
             	new KeyValuePair<String, String>
             	(
 	            	PartnerService.getInstance().getConfiguration().getApis().get( "GetAzureUtilizationRecords" ).getParameters().get( "EndTime" ),
-	            	endTime.toString( "yyyy-MM-ddTHH:mm:ssZ" ) 
+	            	endTime.toString("yyyy-MM-dd'T'HH:mm:ssZ")
             	) 
 	        );
         }

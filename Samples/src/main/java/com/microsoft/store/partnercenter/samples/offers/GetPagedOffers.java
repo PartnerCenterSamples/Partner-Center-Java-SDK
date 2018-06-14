@@ -65,5 +65,4 @@ public class GetPagedOffers
             this.getContext().getConsoleHelper().stopProgress();
         }
     }
-
 }

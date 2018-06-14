@@ -6,9 +6,12 @@
 
 package com.microsoft.store.partnercenter.subscribedskus;
 
+import java.util.List;
+
 import com.microsoft.store.partnercenter.IPartnerComponentString;
 import com.microsoft.store.partnercenter.genericoperations.IEntireEntityCollectionRetrievalOperations;
 import com.microsoft.store.partnercenter.models.ResourceCollection;
+import com.microsoft.store.partnercenter.models.licenses.LicenseGroupId;
 import com.microsoft.store.partnercenter.models.licenses.SubscribedSku;
 
 /***
@@ -23,6 +26,13 @@ public interface ICustomerSubscribedSkuCollection
      * 
      * @return All the customer subscribed products.
      */
-	ResourceCollection<SubscribedSku> get();
+    ResourceCollection<SubscribedSku> get();
 
+    /*** 
+     * Retrieves all the customer subscribed products.
+     * 
+     * @param licenseGroupIds group identifiers.
+     * @return All the customer subscribed products.
+     */
+    ResourceCollection<SubscribedSku> get(List<LicenseGroupId> licenseGroupIds);
 }

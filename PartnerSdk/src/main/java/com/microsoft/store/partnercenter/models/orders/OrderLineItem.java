@@ -6,14 +6,15 @@
 
 package com.microsoft.store.partnercenter.models.orders;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.Map;
+
+import com.microsoft.store.partnercenter.models.ResourceBaseWithLinks;
 
 /**
  * Order line item associates order information to a specific offer of a product
  */
-@JsonIgnoreProperties( "subscriptionId" )
-// @JsonInclude(Include.ALWAYS)
 public class OrderLineItem
+    extends ResourceBaseWithLinks<OrderLineItemLinks>    
 {
     /**
      * Initializes a new instance of the {@link #OrderLineItem} class.
@@ -129,19 +130,17 @@ public class OrderLineItem
     }
 
     /**
-     * Gets or sets the order resulting contract information. This is out parameter only any input values to it will be
-     * ignored.
+     * Gets or sets the provisioning context for the offer.
      */
-    private OrderLineItemLinks __Links;
+    private Map<String, String> __ProvisioningContext;
 
-    public OrderLineItemLinks getLinks()
+    public Map<String, String> getProvisioningContext()
     {
-        return __Links;
+        return __ProvisioningContext;
     }
 
-    public void setLinks( OrderLineItemLinks value )
+    public void setProvisioningContext( Map<String, String> value )
     {
-        __Links = value;
+        __ProvisioningContext = value;
     }
-
 }

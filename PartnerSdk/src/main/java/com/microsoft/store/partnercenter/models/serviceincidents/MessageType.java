@@ -16,21 +16,24 @@ public enum MessageType
     /***
      * Default type none.
      */
-	@JsonProperty( "None" ) NONE,
+    @JsonProperty( "none" ) 
+    NONE,
 	
     /***
      * Active incident.
      */
-	@JsonProperty( "Incident" ) INCIDENT,
+    @JsonProperty( "incident" ) 
+    INCIDENT,
 	
     /***
      * Message center message.
      */
-	@JsonProperty( "MessageCenter" ) MESSAGECENTER,
+    @JsonProperty( "message_center" ) 
+    MESSAGECENTER,
 	
     /***
      * All types.
      */
-	@JsonProperty( "All" ) ALL
-
+    @JsonProperty( "all" ) 
+    ALL
 }

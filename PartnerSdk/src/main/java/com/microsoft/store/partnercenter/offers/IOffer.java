@@ -28,5 +28,4 @@ public interface IOffer
      * @return The requested offer for the given country and Id.
      */
     Offer get();
-
 }

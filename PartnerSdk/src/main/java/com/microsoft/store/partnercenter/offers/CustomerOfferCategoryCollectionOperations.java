@@ -7,7 +7,6 @@
 package com.microsoft.store.partnercenter.offers;
 
 import java.text.MessageFormat;
-import java.util.Locale;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.microsoft.store.partnercenter.BasePartnerComponentString;
@@ -23,7 +22,6 @@ public class CustomerOfferCategoryCollectionOperations
 	extends BasePartnerComponentString
 	implements ICustomerOfferCategoryCollection
 {
-
 	/***
 	 * Initializes a new instance of the CustomerOfferCategoryCollectionOperations class.
 	 * 
@@ -46,11 +44,15 @@ public class CustomerOfferCategoryCollectionOperations
 	public ResourceCollection<OfferCategory> get()
 	{
         IPartnerServiceProxy<ResourceCollection<OfferCategory>, ResourceCollection<OfferCategory>> partnerServiceProxy =
-                new PartnerServiceProxy<ResourceCollection<OfferCategory>, ResourceCollection<OfferCategory>>( new TypeReference<ResourceCollection<OfferCategory>>()
-                {
-                }, this.getPartner(), MessageFormat.format( PartnerService.getInstance().getConfiguration().getApis().get( "GetCustomerOfferCategories" ).getPath(),
-                                                            Locale.US ) );
+                new PartnerServiceProxy<ResourceCollection<OfferCategory>, ResourceCollection<OfferCategory>>( 
+					new TypeReference<ResourceCollection<OfferCategory>>()
+                	{
+					}, 
+					this.getPartner(), 
+					MessageFormat.format( 
+						PartnerService.getInstance().getConfiguration().getApis().get( "GetCustomerOfferCategories" ).getPath(),
+						this.getContext()));
+
         return partnerServiceProxy.get();
 	}
-
 }

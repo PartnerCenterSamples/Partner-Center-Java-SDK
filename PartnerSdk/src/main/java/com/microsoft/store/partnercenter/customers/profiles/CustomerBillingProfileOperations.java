@@ -56,7 +56,6 @@ public class CustomerBillingProfileOperations
         return partnerServiceProxy.get();
     }
 
-    // await
     /**
      * Updates the customer's billing profile.
      * 
@@ -77,7 +76,4 @@ public class CustomerBillingProfileOperations
                                                         this.getContext(), Locale.US ) );
         return partnerServiceProxy.put( billingProfile );
     }
-
 }
-
-// await

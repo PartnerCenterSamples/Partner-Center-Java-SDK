@@ -13,5 +13,13 @@ public enum AuditRecordSearchField {
     /***
      * Customer company name.
      */
-    CompanyName
+    CompanyName,
+    /***
+     * Customer identifier (GUID).
+     */
+    CustomerId, 
+    /***
+     * Resource Type as defined in available Resource Types (Example: Order, Subscription).
+     */
+    ResourceType
 }

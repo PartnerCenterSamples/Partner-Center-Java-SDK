@@ -306,7 +306,7 @@ public class PartnerServiceProxy<TRequest, TResponse>
             __JsonConverter.setSerializationInclusion( Include.NON_NULL );
             __JsonConverter.registerModule( new SimpleModule().addDeserializer( InvoiceLineItem.class, new InvoiceLineItemDeserializer() ) );
             __JsonConverter.registerModule( new SimpleModule().addDeserializer( URI.class, new UriDeserializer() ) );
-	    __JsonConverter.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+	        __JsonConverter.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         }
         return __JsonConverter;
     }
@@ -542,10 +542,13 @@ public class PartnerServiceProxy<TRequest, TResponse>
         request.setHeader( "MS-RequestId", this.getRequestId().toString() );
         request.setHeader( "MS-CorrelationId", this.getCorrelationId().toString() );
         request.setHeader( "X-Locale", getLocale() );
+        
         if( PartnerService.getInstance().getPartnerServiceApiVersion() != null && PartnerService.getInstance().getPartnerServiceApiVersion().trim().isEmpty() != true )
         {
         	request.setHeader( "MS-PartnerCenter-Application", PartnerService.getInstance().getApplicationName() );
         }
+
+        // TODO - The following value should be pulled from the configuration file.
         request.setHeader( "MS-PartnerCenter-Client", "Partner Center JAVA SDK" );
         request.setHeader( "Authorization", "Bearer " + this.getPartner().getCredentials().getPartnerServiceToken() );
         request.setHeader( "Accept", this.getAccept() );
@@ -615,35 +618,47 @@ public class PartnerServiceProxy<TRequest, TResponse>
      * @return The configured response result.
      * @throws PartnerException
      */
+    @SuppressWarnings("unchecked")
     private TResponse handleResponse( CloseableHttpResponse response )
     {
+        String responseBody = null;
+
         if ( response.getStatusLine().getStatusCode() < 400 )
         {
-            String responseBody = null;
             try
             {
                 // That string trimming is due to the byte order mark coming on
                 // the beginning of the JSON response for some APIs.
-            	TResponse responseObj = null;
+                TResponse responseObj = null;
+
                 if ( response.getStatusLine().getStatusCode() != 204 && response.getEntity() != null ){
-                	// Read the raw input in UTF-8 format.
+                    // Read the raw input in UTF-8 format.
 	                responseBody = StringHelper.fromInputStream( response.getEntity().getContent(), "UTF-8" );
 	                
 	                // Remove byte order mark, a character designating the beginning of a Unicode string, if it exists in the payload.
 	                if (responseBody != null && responseBody.length() > 0 && responseBody.substring(0, 1).equals(UTF8_BOM)) {
 	                	responseBody = responseBody.substring(1);
-	                }
-	                responseObj = getJsonConverter().readValue( responseBody, responseClass );
+                    }
+                    
+                    if(StringHelper.isNullOrEmpty(responseBody))
+                    {
+                        response.close(); 
+                        // TODO - Find a better solution for this. There is not a way to check the object type of a null object, so this is a work around.
+                        return (TResponse)response;
+                    }
+
+                    responseObj = getJsonConverter().readValue( responseBody, responseClass );
                 }
+
                 response.close();
                 return responseObj;
             }
             catch ( IOException deserializationProblem )
             {
-                throw new PartnerResponseParseException( responseBody, this.requestContext,
-                                                         "Could not deserialize response. Detailed message: "
-                                                             + deserializationProblem.getMessage(),
-                                                         deserializationProblem );
+                throw new PartnerResponseParseException( 
+                    responseBody, this.requestContext,
+                    "Could not deserialize response. Detailed message: " + deserializationProblem.getMessage(),
+                    deserializationProblem );
             }
         }
         else

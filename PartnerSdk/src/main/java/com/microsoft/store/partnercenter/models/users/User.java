@@ -12,7 +12,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.store.partnercenter.models.ResourceBaseWithLinks;
 import com.microsoft.store.partnercenter.models.StandardResourceLinks;
 
-public class User extends ResourceBaseWithLinks<StandardResourceLinks> {
+public class User extends ResourceBaseWithLinks<StandardResourceLinks>
+{
     /***
      * Gets or sets the user object identifier.
      */
@@ -146,16 +147,31 @@ public class User extends ResourceBaseWithLinks<StandardResourceLinks> {
      * Gets or sets the state of the user, for the deleted user this is "Inactive" and for the normal user it is "Active".
      */
 	@JsonProperty( "State" )
-    private UserState __UserState;
+    private UserState __State;
 	
-	public UserState getUserState()
+	public UserState getState()
     {
-        return __UserState;
+        return __State;
     }
 
-    public void setUserState( UserState value )
+    public void setState( UserState value )
     {
-    	__UserState = value;
+    	__State = value;
     }
 
+    /***
+     * Gets or sets the deleted time for the inactive user.
+     */
+	@JsonProperty( "softDeletionTime" )
+    private DateTime __SoftDeletionTime;
+	
+	public DateTime getSoftDeletionTime()
+    {
+        return __SoftDeletionTime;
+    }
+
+    public void setSoftDeletionTime( DateTime value )
+    {
+    	__SoftDeletionTime = value;
+    }
 }

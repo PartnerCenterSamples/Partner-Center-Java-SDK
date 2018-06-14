@@ -20,8 +20,8 @@ public class AzureResource
 		return __Id;
 	}
 
-	public void setId(String id) {
-		this.__Id = id;
+	public void setId(String value) {
+		this.__Id = value;
 	}
 
 	/***
@@ -33,8 +33,8 @@ public class AzureResource
 		return __Name;
 	}
 
-	public void setName(String name) {
-		this.__Name = name;
+	public void setName(String value) {
+		this.__Name = value;
 	}
 
 	/***
@@ -46,8 +46,8 @@ public class AzureResource
 		return __Category;
 	}
 
-	public void setCategory(String category) {
-		this.__Category = category;
+	public void setCategory(String value) {
+		this.__Category = value;
 	}
 
 	/***
@@ -59,7 +59,20 @@ public class AzureResource
 		return __Subcategory;
 	}
 
-	public void setSubcategory(String subcategory) {
-		this.__Subcategory = subcategory;
+	public void setSubcategory(String value) {
+		this.__Subcategory = value;
+	}
+
+	/***
+	 * Gets or sets the region of the consumed Azure resource.
+	 */
+	private String __Region;
+
+	public String getRegion() {
+		return __Region;
+	}
+
+	public void setRegion(String value) {
+		this.__Region = value;
 	}
 }

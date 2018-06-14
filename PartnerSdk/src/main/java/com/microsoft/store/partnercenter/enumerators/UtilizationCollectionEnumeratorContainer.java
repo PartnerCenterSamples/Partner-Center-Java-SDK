@@ -21,12 +21,10 @@ public class UtilizationCollectionEnumeratorContainer
 	extends BasePartnerComponentString
 	implements IUtilizationCollectionEnumeratorContainer
 {
-	
 	/***
      * A reference to an Azure utilization record enumerator factory.
      */
     private IndexBasedCollectionEnumeratorFactory<AzureUtilizationRecord, ResourceCollection<AzureUtilizationRecord>> azureUtilizationRecordEnumeratorFactory;
-
 
     /***
      * Initializes a new instance of the UtilizationCollectionEnumeratorContainer class.
@@ -51,5 +49,4 @@ public class UtilizationCollectionEnumeratorContainer
 	{
 		return this.azureUtilizationRecordEnumeratorFactory;
 	}
-
 }

@@ -21,5 +21,4 @@ public interface IInvoiceStatement extends IPartnerComponentString
      * @return: The invoice statement.
      */
     InputStream get();
-
 }

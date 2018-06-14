@@ -6,6 +6,8 @@
 
 package com.microsoft.store.partnercenter.models.customers;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.store.partnercenter.models.ResourceBaseWithLinks;
@@ -20,7 +22,6 @@ public class Customer
     extends ResourceBaseWithLinks<StandardResourceLinks>
 {
     public Customer()
-
     {
     }
 
@@ -138,4 +139,36 @@ public class Customer
         __UserCredentials = value;
     }
 
+    /**
+     * Gets the custom domains.
+     */
+    @JsonProperty( "customDomains" )
+    private List<String> __CustomDomains;
+
+    public List<String> getCustomDomains()
+    {
+        return __CustomDomains;
+    }
+
+    public void setCustomDomains( List<String> value )
+    {
+        __CustomDomains = value;
+    }
+
+    /**
+     * Gets or sets the indirect reseller associated to this customer account. 
+     * This value can be set only by indirect CSP partners.
+     */
+    @JsonProperty( "associatedPartnerId" )
+    private String __AssociatedPartnerId;
+
+    public String getAssociatedPartnerId()
+    {
+        return __AssociatedPartnerId;
+    }
+
+    public void setAssociatedPartnerId( String value )
+    {
+        __AssociatedPartnerId = value;
+    }
 }

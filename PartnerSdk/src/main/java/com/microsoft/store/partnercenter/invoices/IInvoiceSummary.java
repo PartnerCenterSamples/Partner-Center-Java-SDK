@@ -8,15 +8,15 @@ package com.microsoft.store.partnercenter.invoices;
 
 import com.microsoft.store.partnercenter.IPartnerComponentString;
 import com.microsoft.store.partnercenter.genericoperations.IEntityGetOperations;
-import com.microsoft.store.partnercenter.models.invoices.Summary;
+import com.microsoft.store.partnercenter.models.invoices.InvoiceSummary;
 
 public interface IInvoiceSummary
-	extends IPartnerComponentString, IEntityGetOperations<Summary>
+	extends IPartnerComponentString, IEntityGetOperations<InvoiceSummary>
 {
     /***
      * Retrieves the invoice summary. This operation is currently only supported for user based credentials.
      * 
      * @return: The invoice summary.
      */
-    Summary get();
+    InvoiceSummary get();
 }

@@ -37,14 +37,22 @@ public class GetOffers
     {
         IPartner partnerOperations = this.getContext().getUserPartnerOperations();
         String countryCode =
-            this.getContext().getConsoleHelper().readNonEmptyString( "Enter the 2 digit country code to get its supported offers",
-                                                                     "The country code can't be empty" );
-        this.getContext().getConsoleHelper().startProgress( MessageFormat.format( "Getting offers for {0}",
-                                                                                  countryCode ) );
+            this.getContext().getConsoleHelper().readNonEmptyString(
+                "Enter the 2 digit country code to get its supported offers",
+                "The country code can't be empty" );
+        
+        this.getContext().getConsoleHelper().startProgress( 
+            MessageFormat.format( 
+                "Getting offers for {0}",
+                countryCode ) );
+        
         ResourceCollection<Offer> offers = partnerOperations.getOffers().byCountry( countryCode ).get();
+        
         this.getContext().getConsoleHelper().stopProgress();
-        this.getContext().getConsoleHelper().writeObject( offers,
-                                                          MessageFormat.format( "Offers in {0}", countryCode ) );
+        
+        this.getContext().getConsoleHelper().writeObject( 
+            offers,
+            MessageFormat.format( "Offers in {0}", countryCode ) );
     }
 
 }

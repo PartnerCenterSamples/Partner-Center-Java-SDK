@@ -6,7 +6,6 @@
 
 package com.microsoft.store.partnercenter.models.partners;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.microsoft.store.partnercenter.models.Address;
 import com.microsoft.store.partnercenter.models.Contact;
 import com.microsoft.store.partnercenter.models.ResourceBaseWithLinks;
@@ -15,7 +14,6 @@ import com.microsoft.store.partnercenter.models.StandardResourceLinks;
 /**
  * The legal business profile.
  */
-@JsonIgnoreProperties( { "profileType" } )
 public class LegalBusinessProfile
     extends ResourceBaseWithLinks<StandardResourceLinks>
 {
@@ -24,9 +22,6 @@ public class LegalBusinessProfile
      */
     public LegalBusinessProfile()
     {
-        // this.setAddress(new Address());
-        // this.setPrimaryContact(new Contact());
-        // this.setCompanyApproverAddress(new Address());
     }
 
     /**
@@ -117,5 +112,20 @@ public class LegalBusinessProfile
     public void setVettingStatus( VettingStatus value )
     {
     	__VettingStatus = value;
+    }
+
+    /***
+     *  Gets or sets the vetting sub status.
+     */
+    private VettingSubStatus __VettingSubStatus;
+
+    public VettingSubStatus getVettingSubStatus()
+    {
+        return __VettingSubStatus;
+    }
+
+    public void setVettingSubStatus( VettingSubStatus value )
+    {
+    	__VettingSubStatus = value;
     }
 }

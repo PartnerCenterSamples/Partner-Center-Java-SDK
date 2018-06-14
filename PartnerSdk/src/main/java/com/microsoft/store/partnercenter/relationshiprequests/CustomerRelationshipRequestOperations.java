@@ -50,5 +50,4 @@ public class CustomerRelationshipRequestOperations
                                                         Locale.US ) );
         return partnerServiceProxy.get();
     }
-
 }

@@ -39,7 +39,6 @@ public class OrderCollectionOperations
         {
             throw new IllegalArgumentException( "customerId must be set." );
         }
-
     }
 
     /**
@@ -86,8 +85,13 @@ public class OrderCollectionOperations
         IPartnerServiceProxy<Order, ResourceCollection<Order>> partnerServiceProxy =
             new PartnerServiceProxy<Order, ResourceCollection<Order>>( new TypeReference<ResourceCollection<Order>>()
             {
-            }, this.getPartner(), MessageFormat.format( PartnerService.getInstance().getConfiguration().getApis().get( "GetOrders" ).getPath(),
-                                                        this.getContext(), Locale.US ) );
+            },
+            this.getPartner(), 
+            MessageFormat.format( 
+                PartnerService.getInstance().getConfiguration().getApis().get( "GetOrders" ).getPath(),
+                this.getContext(), 
+                Locale.US ) );
+                
         return partnerServiceProxy.get();
     }
 }

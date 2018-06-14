@@ -6,7 +6,6 @@
 
 package com.microsoft.store.partnercenter.models.partners;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.microsoft.store.partnercenter.models.Address;
 import com.microsoft.store.partnercenter.models.ResourceBaseWithLinks;
 import com.microsoft.store.partnercenter.models.StandardResourceLinks;
@@ -14,7 +13,6 @@ import com.microsoft.store.partnercenter.models.StandardResourceLinks;
 /**
  * Partner's organization profile
  */
-@JsonIgnoreProperties( { "profileType" } )
 public class OrganizationProfile
     extends ResourceBaseWithLinks<StandardResourceLinks>
 {
@@ -145,5 +143,4 @@ public class OrganizationProfile
     {
         __Culture = value;
     }
-
 }

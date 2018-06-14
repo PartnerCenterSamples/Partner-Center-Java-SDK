@@ -7,7 +7,7 @@
 package com.microsoft.store.partnercenter.samples.invoice;
 
 import com.microsoft.store.partnercenter.IPartner;
-import com.microsoft.store.partnercenter.models.invoices.Summary;
+import com.microsoft.store.partnercenter.models.invoices.InvoiceSummary;
 import com.microsoft.store.partnercenter.samples.BasePartnerScenario;
 import com.microsoft.store.partnercenter.samples.IScenarioContext;
 
@@ -36,7 +36,7 @@ public class GetInvoiceSummary
         IPartner partnerOperations = this.getContext().getUserPartnerOperations();
         this.getContext().getConsoleHelper().startProgress( "Getting Invoice Summary" );
         // Getting the account balance
-        Summary invoiceSummary = partnerOperations.getInvoices().getSummary().get();
+        InvoiceSummary invoiceSummary = partnerOperations.getInvoices().getSummary().get();
         this.getContext().getConsoleHelper().stopProgress();
         this.getContext().getConsoleHelper().writeObject( invoiceSummary, "Invoice Summary" );
     }

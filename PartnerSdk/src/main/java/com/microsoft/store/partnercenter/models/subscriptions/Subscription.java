@@ -10,7 +10,6 @@ import org.joda.time.DateTime;
 import org.joda.time.LocalDateTime;
 import org.joda.time.format.ISODateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.store.partnercenter.exception.PartnerException;
 import com.microsoft.store.partnercenter.models.Contract;
@@ -21,7 +20,6 @@ import com.microsoft.store.partnercenter.models.invoices.BillingType;
  * The subscription resource represents the life cycle of a subscription and includes properties that define the states
  * throughout the subscription life cycle
  */
-@JsonIgnoreProperties( { "billingCycle" } )
 public class Subscription
     extends Contract
 {
@@ -311,5 +309,4 @@ public class Subscription
     {
         __SuspensionReasons = value;
     }
-
 }

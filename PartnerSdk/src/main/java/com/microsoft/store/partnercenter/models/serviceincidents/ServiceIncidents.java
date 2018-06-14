@@ -86,5 +86,4 @@ public class ServiceIncidents
 	public void setMessageCenterMessages(Iterable<ServiceIncidentDetail> __MessageCenterMessages) {
 		this.__MessageCenterMessages = __MessageCenterMessages;
 	}
-
 }

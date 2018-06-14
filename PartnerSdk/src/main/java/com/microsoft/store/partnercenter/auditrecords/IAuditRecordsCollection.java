@@ -11,7 +11,7 @@ import org.joda.time.DateTime;
 import com.microsoft.store.partnercenter.IPartnerComponentString;
 import com.microsoft.store.partnercenter.models.SeekBasedResourceCollection;
 import com.microsoft.store.partnercenter.models.auditing.AuditRecord;
-import com.microsoft.store.partnercenter.models.query.IQuery;;
+import com.microsoft.store.partnercenter.models.query.IQuery;
 
 /***
  * Represents the operations that can be done on partners audit collection.
@@ -30,5 +30,4 @@ public interface IAuditRecordsCollection
      * @return The audit records that match the given query.</returns>
      */
 	SeekBasedResourceCollection<AuditRecord> query( DateTime startDate, DateTime endDate, IQuery query );
-
 }

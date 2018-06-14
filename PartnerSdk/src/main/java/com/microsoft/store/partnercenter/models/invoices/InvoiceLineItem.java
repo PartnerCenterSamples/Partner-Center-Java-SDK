@@ -25,5 +25,4 @@ public abstract class InvoiceLineItem
      * Gets the billing provider
      */
     public abstract BillingProvider getBillingProvider();
-
 }

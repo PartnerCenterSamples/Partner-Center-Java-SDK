@@ -20,8 +20,8 @@ public class AzureInstanceData
 		return __ResourceUri;
 	}
 
-	public void setResourceUri(URI resourceUri) {
-		this.__ResourceUri = resourceUri;
+	public void setResourceUri(URI value) {
+		this.__ResourceUri = value;
 	}
 
     /***
@@ -33,8 +33,8 @@ public class AzureInstanceData
 		return __Location;
 	}
 
-	public void setLocation(String location) {
-		this.__Location = location;
+	public void setLocation(String value) {
+		this.__Location = value;
 	}
 
     /***
@@ -46,8 +46,8 @@ public class AzureInstanceData
 		return __PartNumber;
 	}
 
-	public void setPartNumber(String partNumber) {
-		this.__PartNumber = partNumber;
+	public void setPartNumber(String value) {
+		this.__PartNumber = value;
 	}
 
     /***
@@ -60,8 +60,8 @@ public class AzureInstanceData
 		return __OrderNumber;
 	}
 
-	public void setOrderNumber(String orderNumber) {
-		this.__OrderNumber = orderNumber;
+	public void setOrderNumber(String value) {
+		this.__OrderNumber = value;
 	}
 
 	/***
@@ -73,8 +73,20 @@ public class AzureInstanceData
 		return __Tags;
 	}
 
-	public void setTags(Map<String, String> tags) {
-		this.__Tags = tags;
+	public void setTags(Map<String, String> value) {
+		this.__Tags = value;
 	}
 
+	/***
+     * Gets or sets the the additional info fields.
+     */
+    private Map<String, String> __AdditionalInfo;
+
+	public Map<String, String> getAdditionalInfo() {
+		return __AdditionalInfo;
+	}
+
+	public void setAdditionalInfo(Map<String, String> value) {
+		this.__AdditionalInfo = value;
+	}
 }

@@ -6,9 +6,13 @@
 
 package com.microsoft.store.partnercenter.models.invoices;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 /**
  * Billing Line Items for Usage Based subscriptions
  */
+ @JsonInclude(Include.NON_EMPTY)
 public class UsageBasedLineItem
     extends BaseUsageBasedLineItem
 {
@@ -47,14 +51,14 @@ public class UsageBasedLineItem
     /**
      * Gets or sets the units included in the order.
      */
-    private int __IncludedQuantity;
+    private double __IncludedQuantity;
 
-    public int getIncludedQuantity()
+    public double getIncludedQuantity()
     {
         return __IncludedQuantity;
     }
 
-    public void setIncludedQuantity( int value )
+    public void setIncludedQuantity( double value )
     {
         __IncludedQuantity = value;
     }
@@ -62,14 +66,14 @@ public class UsageBasedLineItem
     /**
      * Gets or sets the quantity consumed above allowed usage.
      */
-    private int __OverageQuantity;
+    private double __OverageQuantity;
 
-    public int getOverageQuantity()
+    public double getOverageQuantity()
     {
         return __OverageQuantity;
     }
 
-    public void setOverageQuantity( int value )
+    public void setOverageQuantity( double value )
     {
         __OverageQuantity = value;
     }
@@ -233,5 +237,4 @@ public class UsageBasedLineItem
     {
         return InvoiceLineItemType.BILLINGLINEITEMS;
     }
-
 }

@@ -40,5 +40,4 @@ public interface IOrderCollection
      * @return The customer orders.
      */
     ResourceCollection<Order> get();
-
 }

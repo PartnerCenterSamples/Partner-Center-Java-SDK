@@ -33,15 +33,17 @@ extends BasePartnerScenario
 	@Override
 	protected void runScenario()
 	{
-	   IPartner partnerOperations = this.getContext().getUserPartnerOperations();
-       String countryCode =
-               this.getContext().getConsoleHelper().readNonEmptyString( "Enter the 2 digit country code to get its supported offer categories",
-                                                                        "The country code can't be empty" );
-	   this.getContext().getConsoleHelper().startProgress( "Retrieving country validation rules" );
-	   CountryValidationRules countryValidationRules = 
-			   partnerOperations.getCountryValidationRules().byCountry( countryCode ).get();
-	   this.getContext().getConsoleHelper().stopProgress();
-	   this.getContext().getConsoleHelper().writeObject( countryValidationRules, "Country validation rules" );        
-	}
+		IPartner partnerOperations = this.getContext().getUserPartnerOperations();
+		String countryCode = this.getContext().getConsoleHelper().readNonEmptyString(
+			"Enter the 2 digit country code to get its validation rules", 
+			"The country code can't be empty");
+
+		this.getContext().getConsoleHelper().startProgress( "Retrieving country validation rules" );
 	
+		CountryValidationRules countryValidationRules = 
+			   partnerOperations.getCountryValidationRules().byCountry( countryCode ).get();
+	
+		this.getContext().getConsoleHelper().stopProgress();
+		this.getContext().getConsoleHelper().writeObject( countryValidationRules, "Country validation rules" );        
+	}
 }

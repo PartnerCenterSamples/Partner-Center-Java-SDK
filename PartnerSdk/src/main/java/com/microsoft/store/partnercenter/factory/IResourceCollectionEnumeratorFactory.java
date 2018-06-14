@@ -22,5 +22,4 @@ public interface IResourceCollectionEnumeratorFactory<T extends ResourceBaseWith
      * @return A customer collection enumerator capable of traversing customers.
      */
     IResourceCollectionEnumerator<T> create( T customerResourceCollection );
-
 }

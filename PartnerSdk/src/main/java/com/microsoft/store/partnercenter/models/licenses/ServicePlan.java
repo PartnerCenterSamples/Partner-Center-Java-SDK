@@ -90,5 +90,4 @@ public class ServicePlan {
     {
     	__TargetType = value;
     }
-
 }

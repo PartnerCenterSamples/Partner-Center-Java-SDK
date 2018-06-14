@@ -29,5 +29,4 @@ public interface IPartnerServiceRequestCollection
      * @return The ServiceRequest information that was just created.
      */
     ServiceRequest create( ServiceRequest newEntity, String agentLocale );
-
 }

@@ -48,6 +48,31 @@ public interface ISubscription
     IUtilizationCollection getUtilization();
     
     /***
+     * Gets the current subscription's provisioning status operations.
+     */
+    ISubscriptionProvisioningStatus getProvisioningStatus();
+
+    /***
+     * Gets the current subscription's support contact operations.
+     */
+    ISubscriptionSupportContact getSupportContact();
+
+    /***
+     * Gets the current subscription's registration operations.
+     */
+    ISubscriptionRegistration getRegistration();
+
+    /***
+     * Gets the current subscription's registration status operations.
+     */
+    ISubscriptionRegistrationStatus getRegistrationStatus();
+
+    /***
+     * Gets the current subscription's conversion operations. These operations will only apply to trial subscriptions.
+     */
+    ISubscriptionConversionCollection getConversions();
+
+    /***
      * Retrieves the subscription.
      * @return The subscription.
      */
@@ -59,5 +84,4 @@ public interface ISubscription
      * @return The updated subscription.
      */
     Subscription patch( Subscription subscription );
-
 }

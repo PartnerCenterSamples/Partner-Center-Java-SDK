@@ -6,19 +6,16 @@
 
 package com.microsoft.store.partnercenter.models.customers;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.microsoft.store.partnercenter.models.ResourceBaseWithLinks;
 import com.microsoft.store.partnercenter.models.StandardResourceLinks;
 
 /**
  * Customer company profile
  */
-@JsonIgnoreProperties( { "address", "email" } )
 public class CustomerCompanyProfile
     extends ResourceBaseWithLinks<StandardResourceLinks>
 {
     public CustomerCompanyProfile()
-
     {
     }
 
@@ -66,5 +63,4 @@ public class CustomerCompanyProfile
     {
         __CompanyName = value;
     }
-
 }

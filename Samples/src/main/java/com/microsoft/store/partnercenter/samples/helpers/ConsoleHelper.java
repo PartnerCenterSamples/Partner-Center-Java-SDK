@@ -148,6 +148,20 @@ public class ConsoleHelper
     }
 
     /**
+     * Reads a string from the console (it can be empty as it is intended to be used with optional values).
+     * 
+     * @param promptMessage The prompt message to display.
+     * @return The string input from the console.
+     */
+    public String readOptionalString(String promptMessage)
+    {
+        String input;
+        System.out.println( promptMessage );
+        input = this.getScanner().nextLine();
+        return input;
+    }
+
+    /**
      * Writes an object and its properties recursively to the console. Properties are automatically indented.
      * 
      * @param object The object to print to the console.

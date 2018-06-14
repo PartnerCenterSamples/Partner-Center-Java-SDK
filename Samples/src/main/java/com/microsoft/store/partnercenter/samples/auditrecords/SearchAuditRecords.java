@@ -19,8 +19,8 @@ import com.microsoft.store.partnercenter.models.query.filters.SimpleFieldFilter;
 import com.microsoft.store.partnercenter.samples.BasePartnerScenario;
 import com.microsoft.store.partnercenter.samples.IScenarioContext;
 
-public class SearchAuditRecords extends BasePartnerScenario {
-
+public class SearchAuditRecords extends BasePartnerScenario 
+{
 	public SearchAuditRecords(IScenarioContext context) {
 		super("Filter by company name", context);
 	}
@@ -31,12 +31,15 @@ public class SearchAuditRecords extends BasePartnerScenario {
 	@Override
 	protected void runScenario() {
 		IPartner partnerOperations = this.getContext().getUserPartnerOperations();
-        this.getContext().getConsoleHelper().startProgress( "Searching Audit Records" );
+        String companyName  =
+                this.getContext().getConsoleHelper().readNonEmptyString( 
+                    "Enter the company name to filter by",
+					"The company name cannot be empty" );		
+					
+		this.getContext().getConsoleHelper().startProgress( "Searching Audit Records" );
         
-        /*DateTime startDate = new DateTime( DateTime.now().getYear(), DateTime.now().getMonthOfYear() - 1, 
-        		DateTime.now().getDayOfMonth(), 0, 0 );*/
         DateTime startDate = new DateTime().dayOfMonth().withMinimumValue();
-        SimpleFieldFilter filter = new SimpleFieldFilter(AuditRecordSearchField.CompanyName.toString(), "00", FieldFilterOperation.SUBSTRING );
+        SimpleFieldFilter filter = new SimpleFieldFilter(AuditRecordSearchField.CompanyName.toString(), companyName, FieldFilterOperation.SUBSTRING );
         SeekBasedResourceCollection<AuditRecord> auditRecordsCollection = 
         		partnerOperations.getAuditRecords().query(startDate, null, QueryFactory.getInstance().buildSimpleQuery( filter ) );
         this.getContext().getConsoleHelper().stopProgress();
@@ -64,7 +67,5 @@ public class SearchAuditRecords extends BasePartnerScenario {
 
             auditRecordssEnumerator.next();
         }
-
 	}
-
 }

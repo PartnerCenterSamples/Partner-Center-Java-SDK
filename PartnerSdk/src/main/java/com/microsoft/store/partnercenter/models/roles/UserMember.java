@@ -59,5 +59,4 @@ public class UserMember extends ResourceBase {
     {
     	__UserPrincipalName = value;
     }
-
 }

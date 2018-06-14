@@ -63,7 +63,6 @@ public class ProductSku {
     	__SkuPartNumber = value;
     }
 
-
     /***
      * Gets or sets the target type of a product.
      * It can be used to filter products which are applicable to user or tenant.
@@ -82,4 +81,20 @@ public class ProductSku {
     	__TargetType = value;
     }
 
+    /***
+     * Gets or sets the group id of a license. For example 'Windows 10 Enterprise E3'
+     * is managed through Group1.
+     */
+    @JsonProperty( "LicenseGroupId" )
+    private LicenseGroupId __LicenseGroupId;
+
+    public LicenseGroupId getLicenseGroupId()
+    {
+        return __LicenseGroupId;
+    }
+
+    public void setLicenseGroupId( LicenseGroupId value )
+    {
+    	__LicenseGroupId = value;
+    }
 }
