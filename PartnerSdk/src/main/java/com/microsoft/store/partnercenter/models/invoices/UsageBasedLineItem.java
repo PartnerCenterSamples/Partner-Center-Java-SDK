@@ -6,13 +6,9 @@
 
 package com.microsoft.store.partnercenter.models.invoices;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
 /**
  * Billing Line Items for Usage Based subscriptions
  */
- @JsonInclude(Include.NON_EMPTY)
 public class UsageBasedLineItem
     extends BaseUsageBasedLineItem
 {

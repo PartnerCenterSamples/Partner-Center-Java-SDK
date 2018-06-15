@@ -26,7 +26,6 @@ public class InvoiceLineItemCollectionOperations
 	extends BasePartnerComponentString
 	implements IInvoiceLineItemCollection
 {
-
     /***
      * The provider of billing information.
      */
@@ -36,7 +35,6 @@ public class InvoiceLineItemCollectionOperations
      * The type of invoice line item.
      */
     private InvoiceLineItemType invoiceLineItemType;
-
 	
 	/***
 	 * Initializes a new instance of the InvoiceLineItemCollectionOperations class.
@@ -67,7 +65,6 @@ public class InvoiceLineItemCollectionOperations
 
         this.billingProvider = billingProvider;
         this.invoiceLineItemType = invoiceLineItemType;
-
 	}
 
 	/***
@@ -79,10 +76,17 @@ public class InvoiceLineItemCollectionOperations
 	public ResourceCollection<InvoiceLineItem> get()
 	{
         IPartnerServiceProxy<InvoiceLineItem, ResourceCollection<InvoiceLineItem>> partnerServiceProxy =
-                new PartnerServiceProxy<InvoiceLineItem, ResourceCollection<InvoiceLineItem>>( new TypeReference<ResourceCollection<InvoiceLineItem>>()
-                {
-                }, this.getPartner(), MessageFormat.format( PartnerService.getInstance().getConfiguration().getApis().get( "GetInvoiceLineItems" ).getPath(),
-                                                            this.getContext(), this.billingProvider, this.invoiceLineItemType, Locale.US ) );
+                new PartnerServiceProxy<InvoiceLineItem, ResourceCollection<InvoiceLineItem>>( 
+                    new TypeReference<ResourceCollection<InvoiceLineItem>>()
+                    {
+                    },
+                    this.getPartner(), 
+                    MessageFormat.format( 
+                        PartnerService.getInstance().getConfiguration().getApis().get( "GetInvoiceLineItems" ).getPath(),
+                        this.getContext(),
+                        this.billingProvider, 
+                        this.invoiceLineItemType, 
+                        Locale.US ) );
 
         return partnerServiceProxy.get();
 	}
@@ -95,18 +99,26 @@ public class InvoiceLineItemCollectionOperations
 	@Override
 	public ResourceCollection<InvoiceLineItem> get( int size, int offset )
 	{
-                IPartnerServiceProxy<InvoiceLineItem, ResourceCollection<InvoiceLineItem>> partnerServiceProxy =
-                        new PartnerServiceProxy<InvoiceLineItem, ResourceCollection<InvoiceLineItem>>( new TypeReference<ResourceCollection<InvoiceLineItem>>()
-                        {
-                        }, this.getPartner(), MessageFormat.format( PartnerService.getInstance().getConfiguration().getApis().get( "GetInvoiceLineItems" ).getPath(),
-                                                                this.getContext(), this.billingProvider, this.invoiceLineItemType, Locale.US ) );
+        IPartnerServiceProxy<InvoiceLineItem, ResourceCollection<InvoiceLineItem>> partnerServiceProxy =
+                new PartnerServiceProxy<InvoiceLineItem, ResourceCollection<InvoiceLineItem>>( 
+                    new TypeReference<ResourceCollection<InvoiceLineItem>>()
+                    {
+                    }, 
+                    this.getPartner(), 
+                    MessageFormat.format( 
+                        PartnerService.getInstance().getConfiguration().getApis().get( "GetInvoiceLineItems" ).getPath(),
+                        this.getContext(), this.billingProvider, 
+                        this.invoiceLineItemType, 
+                        Locale.US ) );
 
-                partnerServiceProxy.getUriParameters().add( new KeyValuePair<String, String>( PartnerService.getInstance().getConfiguration().getApis().get( "GetInvoiceLineItems" ).getParameters().get( "Size" ),
-                        String.valueOf( size ) ) );
+        partnerServiceProxy.getUriParameters().add( new KeyValuePair<String, String>( 
+            PartnerService.getInstance().getConfiguration().getApis().get( "GetInvoiceLineItems" ).getParameters().get( "Size" ),
+            String.valueOf( size ) ) );
 
-                partnerServiceProxy.getUriParameters().add( new KeyValuePair<String, String>( PartnerService.getInstance().getConfiguration().getApis().get( "GetInvoiceLineItems" ).getParameters().get( "Offset" ),
-                        String.valueOf( offset ) ) );
+        partnerServiceProxy.getUriParameters().add( 
+            new KeyValuePair<String, String>( PartnerService.getInstance().getConfiguration().getApis().get( "GetInvoiceLineItems" ).getParameters().get( "Offset" ),
+            String.valueOf( offset ) ) );
 
-                return partnerServiceProxy.get();
+        return partnerServiceProxy.get();
 	}
 }

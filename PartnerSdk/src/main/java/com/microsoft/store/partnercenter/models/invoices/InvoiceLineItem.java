@@ -6,13 +6,11 @@
 
 package com.microsoft.store.partnercenter.models.invoices;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.microsoft.store.partnercenter.models.ResourceBase;
 
 /**
  * Represents a line item on an invoice.
  */
-@JsonIgnoreProperties({ "invoiceLineItemType", "billingProvider"})
 public abstract class InvoiceLineItem
     extends ResourceBase
 {
