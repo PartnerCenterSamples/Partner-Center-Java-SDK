@@ -48,8 +48,8 @@ import com.microsoft.store.partnercenter.models.utils.KeyValuePair;
 import com.microsoft.store.partnercenter.requestcontext.IRequestContext;
 import com.microsoft.store.partnercenter.requestcontext.RequestContext;
 import com.microsoft.store.partnercenter.requestcontext.RequestContextFactory;
-import com.microsoft.store.partnercenter.utils.InvoiceLineItemDeserializer;
 import com.microsoft.store.partnercenter.utils.UriDeserializer;
+import com.microsoft.store.partnercenter.utils.InvoiceLineItemDeserializer;
 import com.microsoft.store.partnercenter.utils.StringHelper;
 
 /**
@@ -94,21 +94,27 @@ public class PartnerServiceProxy<TRequest, TResponse>
      * @param errorHandler An optional handler for failed responses. The default will be used if not provided.
      * @param jsonConverter An optional JSON response converter. The default will be used if not provided.
      */
-    public PartnerServiceProxy( IPartner rootPartnerOperations, String resourcePath,
-                                IFailedPartnerServiceResponseHandler errorHandler, ObjectMapper jsonConverter )
+    public PartnerServiceProxy(IPartner rootPartnerOperations,
+        String resourcePath,
+        IFailedPartnerServiceResponseHandler errorHandler,
+        ObjectMapper jsonConverter )
     {
         super( rootPartnerOperations );
+
         if ( this.getPartner().getRequestContext().getRequestId().equals( new UUID( 0, 0 ) ) )
         {
             // there is not request id assigned, generate one and stick to it (consider retries)
             this.requestContext =
-                RequestContextFactory.getInstance().create( this.getPartner().getRequestContext().getCorrelationId(),
-                                              UUID.randomUUID(), this.getPartner().getRequestContext().getLocale() );
+                RequestContextFactory.getInstance().create( 
+                    this.getPartner().getRequestContext().getCorrelationId(),
+                    UUID.randomUUID(), 
+                    this.getPartner().getRequestContext().getLocale() );
         }
         else
         {
             this.requestContext = this.getPartner().getRequestContext();
         }
+
         this.setAccept( "application/json" );
         this.setContentType( "application/json" );
         this.setUriParameters( new ArrayList<KeyValuePair<String, String>>() );
@@ -304,10 +310,11 @@ public class PartnerServiceProxy<TRequest, TResponse>
             __JsonConverter.setDateFormat( new SimpleDateFormat( "yyyy-MM-dd" ) );
             __JsonConverter.disable( SerializationFeature.WRITE_DATES_AS_TIMESTAMPS );
             __JsonConverter.setSerializationInclusion( Include.NON_NULL );
-            __JsonConverter.registerModule( new SimpleModule().addDeserializer( InvoiceLineItem.class, new InvoiceLineItemDeserializer() ) );
+            __JsonConverter.registerModule( new SimpleModule().addDeserializer( InvoiceLineItem.class, new  InvoiceLineItemDeserializer() ) );
             __JsonConverter.registerModule( new SimpleModule().addDeserializer( URI.class, new UriDeserializer() ) );
 	        __JsonConverter.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         }
+
         return __JsonConverter;
     }
 
@@ -365,6 +372,10 @@ public class PartnerServiceProxy<TRequest, TResponse>
             try
             {
                 RequestBuilder request = RequestBuilder.get( this.buildPartnerServiceApiUri() );
+
+                // Add the required HTTP headers to the request.
+                addHttpHeaders(request);
+
             	response = retryableHttpCall.execute( httpClient, request.build() );
             }
             catch ( IOException e )
@@ -501,10 +512,12 @@ public class PartnerServiceProxy<TRequest, TResponse>
         HttpClientBuilder builder = HttpClients.custom().disableContentCompression();
         String proxyName = PartnerService.getInstance().getProxyHostName();
         Integer proxyPort = PartnerService.getInstance().getProxyPort();
+
         if ( proxyName != null && proxyPort != null )
         {
             builder = builder.setProxy( new HttpHost( proxyName, proxyPort ) );
         }
+
         return builder.build();
     }
 
@@ -581,23 +594,31 @@ public class PartnerServiceProxy<TRequest, TResponse>
             {
                 try
                 {
-                    PartnerService.getInstance().getRefreshCredentialsHandler().onCredentialsRefreshNeeded( this.getPartner().getCredentials(),
-                                                                                                   this.requestContext );
+                    PartnerService.getInstance().getRefreshCredentialsHandler().onCredentialsRefreshNeeded( 
+                        this.getPartner().getCredentials(),
+                        this.requestContext );
                 }
                 catch ( Exception refreshProblem )
                 {
 
-                    PartnerLog.getInstance().logError( MessageFormat.format( "Refreshing the credentials has failed: {0}",
-                                                                             refreshProblem, Locale.US ) );
-                    throw new PartnerException( "Refreshing the credentials has failed.", this.requestContext,
-                                                PartnerErrorCategory.UNAUTHORIZED, refreshProblem );
+                    PartnerLog.getInstance().logError( 
+                        MessageFormat.format( 
+                            "Refreshing the credentials has failed: {0}",
+                            refreshProblem, Locale.US ) );
+                    
+                    throw new PartnerException( 
+                        "Refreshing the credentials has failed.",
+                        this.requestContext,
+                        PartnerErrorCategory.UNAUTHORIZED, refreshProblem );
                 }
 
                 if ( this.getPartner().getCredentials().isExpired() )
                 {
                     PartnerLog.getInstance().logError( "The credential refresh mechanism provided expired credentials." );
-                    throw new PartnerException( "The credential refresh mechanism provided expired credentials.",
-                                                this.requestContext, PartnerErrorCategory.UNAUTHORIZED );
+                    throw new PartnerException(
+                        "The credential refresh mechanism provided expired credentials.",
+                        this.requestContext,
+                        PartnerErrorCategory.UNAUTHORIZED );
                 }
 
             }
@@ -605,8 +626,11 @@ public class PartnerServiceProxy<TRequest, TResponse>
             {
                 // we can't refresh the credentials silently, fail with unauthorized
                 PartnerLog.getInstance().logError( "The partner credentials have expired." );
-                throw new PartnerException( "The partner credentials have expired. Please provide updated credentials.",
-                                            this.requestContext, PartnerErrorCategory.UNAUTHORIZED );
+                
+                throw new PartnerException( 
+                    "The partner credentials have expired. Please provide updated credentials.",
+                    this.requestContext, 
+                    PartnerErrorCategory.UNAUTHORIZED );
             }
         }
     }
@@ -639,7 +663,7 @@ public class PartnerServiceProxy<TRequest, TResponse>
 	                if (responseBody != null && responseBody.length() > 0 && responseBody.substring(0, 1).equals(UTF8_BOM)) {
 	                	responseBody = responseBody.substring(1);
                     }
-                    
+
                     if(StringHelper.isNullOrEmpty(responseBody))
                     {
                         response.close(); 
@@ -710,10 +734,11 @@ public class PartnerServiceProxy<TRequest, TResponse>
                 queryStringBuilder.append( "&" );
             }
 
-            queryStringBuilder.append( MessageFormat.format( "{0}={1}", queryParameter.getKey(),
-                                                             queryParameter.getValue(), Locale.US ) );
+            queryStringBuilder.append( 
+                MessageFormat.format( "{0}={1}", 
+                queryParameter.getKey(),
+                queryParameter.getValue(), Locale.US ) );
         }
         return queryStringBuilder.toString();
     }
-
 }

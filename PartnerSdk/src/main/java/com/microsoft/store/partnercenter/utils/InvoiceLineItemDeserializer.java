@@ -12,9 +12,10 @@ import java.text.MessageFormat;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectReader;
+import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.microsoft.store.partnercenter.models.invoices.BillingProvider;
 import com.microsoft.store.partnercenter.models.invoices.LicenseBasedLineItem;
 import com.microsoft.store.partnercenter.models.invoices.OneTimeInvoiceLineItem;
@@ -23,13 +24,24 @@ import com.microsoft.store.partnercenter.models.invoices.UsageBasedLineItem;
 import com.microsoft.store.partnercenter.models.invoices.DailyUsageLineItem;
 
 public class InvoiceLineItemDeserializer
-    extends JsonDeserializer<InvoiceLineItem>
+    extends StdDeserializer<InvoiceLineItem>
 {
+    private static final long serialVersionUID = 2L;
+
+    public InvoiceLineItemDeserializer() { 
+        this(null); 
+    } 
+ 
+    public InvoiceLineItemDeserializer(Class<?> vc) { 
+        super(vc); 
+    }
+
     @Override
-    public InvoiceLineItem deserialize( JsonParser parser, DeserializationContext context )
-        throws IOException, JsonProcessingException
+    public InvoiceLineItem deserialize(JsonParser parser, DeserializationContext ctxt) 
+      throws IOException, JsonProcessingException 
     {
-        ObjectMapper mapper = (ObjectMapper) parser.getCodec();
+        ObjectMapper mapper = (ObjectMapper)parser.getCodec();
+        ObjectReader reader = null; 
         JsonNode jsonNode = parser.readValueAsTree();
         Object target = null;
         String billingProvider = jsonNode.get( "billingProvider" ).textValue();
@@ -46,15 +58,18 @@ public class InvoiceLineItemDeserializer
         {
             if ( billingProvider.equalsIgnoreCase( BillingProvider.Azure.toString()))
             {
-                target = mapper.readValue(parser, UsageBasedLineItem.class);
+                reader = mapper.readerFor(UsageBasedLineItem.class);
+                target = reader.readValue(jsonNode);
             }
             else if ( billingProvider.equalsIgnoreCase(BillingProvider.Office.toString()))
             {
-                target = mapper.readValue(parser, LicenseBasedLineItem.class);
+                reader = mapper.readerFor(LicenseBasedLineItem.class);
+                target = reader.readValue(jsonNode);
             }
             else if ( billingProvider.equalsIgnoreCase(BillingProvider.OneTime.toString()))
             {
-                target = mapper.readValue(parser, OneTimeInvoiceLineItem.class );
+                reader = mapper.readerFor(OneTimeInvoiceLineItem.class);
+                target = reader.readValue(jsonNode);
             } 
         }
         else
@@ -64,7 +79,6 @@ public class InvoiceLineItemDeserializer
         
         if (target == null)
         {
-            String data = jsonNode.get("serviceType").asText();
             throw new IOException(MessageFormat.format( "InvoiceLineItemConverter cannot deserialize invoice line items with type {0} and billing provider: {1}", invoiceLineItemType, billingProvider));
         }
         

@@ -40,5 +40,6 @@ The following changes, and bug fixes, where made with this release
 - Fixed the bug prevent service request from being opened.
 - Fixed the bug where offers and offer categories could not be retrieved.
 - Fixed the bug where the enumerators were returning 404 when requesting another page of records.
+- Fixed the bug with processing the invoice line items.
 - The FileLinks property was removed from the Service Request API since uploading file through the API is not supported at the moment.
 - Updated Rate card API to support Azure Partner Share Services

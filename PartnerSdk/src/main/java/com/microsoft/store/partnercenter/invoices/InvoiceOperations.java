@@ -74,10 +74,12 @@ public class InvoiceOperations
         IPartnerServiceProxy<Invoice, Invoice> partnerServiceProxy =
             new PartnerServiceProxy<Invoice, Invoice>( new TypeReference<Invoice>()
             {
-            }, this.getPartner(), MessageFormat.format( PartnerService.getInstance().getConfiguration().getApis().get( "GetInvoice" ).getPath(),
-                                                        this.getContext(), Locale.US ) );
+            }, 
+            this.getPartner(), MessageFormat.format( 
+                PartnerService.getInstance().getConfiguration().getApis().get( "GetInvoice" ).getPath(),
+                this.getContext(),
+                Locale.US ) );
 
         return partnerServiceProxy.get();
     }
-
 }
