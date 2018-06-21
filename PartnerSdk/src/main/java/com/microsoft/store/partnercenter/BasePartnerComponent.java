@@ -61,5 +61,4 @@ public abstract class BasePartnerComponent<TContext>
     {
         __Context = value;
     }
-
 }

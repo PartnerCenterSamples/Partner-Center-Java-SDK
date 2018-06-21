@@ -22,5 +22,4 @@ public interface IAggregatePartner
      * @return A partner operations object which uses the provided operation context.
      */
     IPartner with( IRequestContext context );
-
 }

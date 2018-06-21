@@ -7,10 +7,10 @@
 	<packaging>jar</packaging>
 	<name>Partner Center Java SDK</name>
 	<description>
-		The Partner Center Java SDK, provides an SDK to interact with the Microsoft's Partner Center Service. 
-		This enables the Partners to perform the Partner Center operations programmatically or through their own portals. 
-		The Java SDK is the latest addition to existing portfolio of REST APIs and the C# SDK. 
-		This is currently tested and supports Java versions of Java 7 and above. 
+		The Partner Center Java SDK, provides an SDK to interact with the Microsoft's Partner Center Service.
+		This enables the Partners to perform the Partner Center operations programmatically or through their own portals.
+		The Java SDK is the latest addition to existing portfolio of REST APIs and the C# SDK.
+		This is currently tested and supports Java versions of Java 7 and above.
 	</description>
 	<url>
 		https://github.com/PartnerCenterSamples/Partner-Center-Java-SDK
@@ -62,8 +62,16 @@
 			<version>1.6.0</version>
 			<scope>compile</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>5.1.0</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 	<build>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<testSourceDirectory>test/main/java</testSourceDirectory>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>

@@ -90,5 +90,4 @@ public final class AuthenticationToken
     {
         return DateTime.now().isAfter( this.getExpiryTime().minus( getExpiryBuffer() ) );
     }
-
 }

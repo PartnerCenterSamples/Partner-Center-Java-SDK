@@ -42,5 +42,4 @@ public class AggregatePartnerOperations
 
         return new PartnerOperations( this.getCredentials(), context );
     }
-
 }

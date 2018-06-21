@@ -166,7 +166,6 @@ public class PartnerOperations
 	 */
 	private IPartnerCredentials __Credentials;
 
-	@Override
 	public IPartnerCredentials getCredentials()
 	{
 		return __Credentials;
@@ -182,7 +181,6 @@ public class PartnerOperations
 	 */
 	private IRequestContext __RequestContext;
 
-	@Override
 	public IRequestContext getRequestContext()
 	{
 		return __RequestContext;
@@ -196,7 +194,6 @@ public class PartnerOperations
 	/**
 	 * Gets the collection enumerators available for traversing through results.
 	 */
-	@Override
 	public IResourceCollectionEnumeratorContainer getEnumerators()
 	{
 		if ( this.enumeratorContainer == null )
@@ -210,7 +207,6 @@ public class PartnerOperations
 	/**
 	 * Gets the offer categories operations available to the partner.
 	 */
-	@Override
 	public ICountrySelector<IOfferCategoryCollection> getOfferCategories()
 	{
 		if ( this.offerCategories == null )
@@ -224,7 +220,6 @@ public class PartnerOperations
 	/**
 	 * Gets the partner profiles operations.
 	 */
-	@Override
 	public IPartnerProfileCollection getProfiles()
 	{
 		if ( this.profiles == null )
@@ -238,7 +233,6 @@ public class PartnerOperations
 	/**
 	 * Gets the partner customers operations.
 	 */
-	@Override
 	public ICustomerCollection getCustomers()
 	{
 		if ( this.customers == null )
@@ -251,7 +245,6 @@ public class PartnerOperations
 	/**
 	 * Gets the offer operations available to the partner.
 	 */
-	@Override
 	public ICountrySelector<IOfferCollection> getOffers()
 	{
 		if ( this.offers == null )
@@ -264,7 +257,6 @@ public class PartnerOperations
 	/**
 	 * Gets the partner's invoices.
 	 */
-	@Override
 	public IInvoiceCollection getInvoices()
 	{
 		if ( this.invoices == null )
@@ -277,7 +269,6 @@ public class PartnerOperations
 	/**
 	 * Gets the Service Request operations available.
 	 */
-	@Override
 	public IPartnerServiceRequestCollection getServiceRequests()
 	{
 		if ( this.serviceRequests == null )
@@ -290,7 +281,6 @@ public class PartnerOperations
 	/**
 	 * Gets the Service incidents operations available.
 	 */
-	@Override
 	public IServiceIncidentCollection getServiceIncidents()
 	{
 		if ( this.serviceIncidents == null )
@@ -303,7 +293,6 @@ public class PartnerOperations
 	/**
 	 * Gets the usage summary operations available to the partner.
 	 */
-	@Override
 	public IPartnerUsageSummary getUsageSummary()
 	{
 		if ( this.usageSummary == null )
@@ -316,7 +305,6 @@ public class PartnerOperations
 	/**
 	 * Gets the audit records operations available to the partner.
 	 */
-	@Override
 	public IAuditRecordsCollection getAuditRecords() {
 		if ( this.auditRecords == null )
 		{
@@ -328,7 +316,6 @@ public class PartnerOperations
 	/**
 	 * Gets the country validation rules operations available to the partner.
 	 */
-	@Override
 	public ICountryValidationRulesCollection getCountryValidationRules() {
 		if ( this.countryValidationRules == null )
 		{
@@ -340,7 +327,6 @@ public class PartnerOperations
 	/**
 	 * Gets the domain operations available to the partner.
 	 */
-	@Override
 	public IDomainCollection getDomains() {
 		if ( this.domains == null )
 		{
@@ -352,7 +338,6 @@ public class PartnerOperations
 	/**
 	 * Gets the rate card operations available to the partner.
 	 */
-	@Override
 	public IRateCardCollection getRateCards() {
 		if ( this.rateCards == null )
 		{
@@ -364,7 +349,6 @@ public class PartnerOperations
 	/**
 	 * Gets the analytics collection operations.
 	 */
-	@Override
 	public IPartnerAnalyticsCollection getAnalytics() {
 		if ( this.analytics == null )
 		{

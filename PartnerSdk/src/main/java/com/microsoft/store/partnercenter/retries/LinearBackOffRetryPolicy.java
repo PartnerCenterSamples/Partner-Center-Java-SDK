@@ -70,7 +70,6 @@ public class LinearBackOffRetryPolicy
      * @param attempt The attempt number.
      * @return True to retry, false to not.
      */
-    @Override
     public boolean shouldRetry( int attempt )
     {
         return attempt <= this.getMaxRetries();
@@ -82,10 +81,8 @@ public class LinearBackOffRetryPolicy
      * @param attempt The attempt number.
      * @return The back off time.
      */
-    @Override
     public Duration getBackOffTime( int attempt )
     {
         return this.getBackOff();
     }
-
 }

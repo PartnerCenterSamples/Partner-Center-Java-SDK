@@ -21,11 +21,13 @@ import org.joda.time.LocalTime;
 import com.microsoft.store.partnercenter.PartnerService;
 import com.microsoft.store.partnercenter.logging.PartnerLog;
 import com.microsoft.store.partnercenter.retries.IRetryPolicy;
+import com.microsoft.store.partnercenter.retries.IRetryableOperation;
 
 /**
  * Implements retryable HTTP calls. Use this class with the retry policy you need to implement HTTP call retries.
  */
-public class RetryableHttpCall // TODO: extends IRetryableOperation<Task<HttpResponseMessage>>
+public class RetryableHttpCall
+    implements IRetryableOperation<CloseableHttpResponse>
 {
     /**
      * Responses with codes listed here will not be retried.

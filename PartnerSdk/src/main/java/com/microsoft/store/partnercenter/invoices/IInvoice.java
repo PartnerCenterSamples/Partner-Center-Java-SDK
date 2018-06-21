@@ -18,12 +18,10 @@ import com.microsoft.store.partnercenter.models.invoices.InvoiceLineItemType;
 public interface IInvoice
     extends IPartnerComponentString, IEntityGetOperations<Invoice>
 {
-	
 	/***
 	 * Gets an invoice document operations.
 	 */
     IInvoiceDocuments getDocuments();
-
 	
     /***
      * Creates an invoice line item collection operations given a billing provider and invoice line item type.
@@ -32,8 +30,7 @@ public interface IInvoice
      * @param invoiceLineItemType: invoiceLineItemType">The invoice line item type.
      * @return: The invoice line item collection operations.
      */
-    IInvoiceLineItemCollection by( BillingProvider billingProvider, InvoiceLineItemType invoiceLineItemType );
-
+    IInvoiceLineItemCollection by(BillingProvider billingProvider, InvoiceLineItemType invoiceLineItemType);
     
     /**
      * Retrieves the invoice. This operation is currently only supported for user based credentials.
@@ -41,5 +38,4 @@ public interface IInvoice
      * @return The invoice.
      */
     Invoice get();
-
 }

@@ -28,5 +28,4 @@ public abstract class BasePartnerComponentString
     {
         super( rootPartnerOperations, componentContext );
     }
-
 }

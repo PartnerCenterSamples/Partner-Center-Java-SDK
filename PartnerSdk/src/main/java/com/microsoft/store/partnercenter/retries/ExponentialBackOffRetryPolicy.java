@@ -54,7 +54,6 @@ public class ExponentialBackOffRetryPolicy
      * @param attempt The attempt number.
      * @return True to retry, false to not.
      */
-    @Override
     public boolean shouldRetry( int attempt )
     {
         return attempt <= this.getMaxRetries();
@@ -66,7 +65,6 @@ public class ExponentialBackOffRetryPolicy
      * @param attempt The attempt number.
      * @return The back off time.
      */
-    @Override
     public Duration getBackOffTime( int attempt )
     {
         // the first retry will wait for: 0.5 seconds, second retry will wait for 1.5 seconds, third retry will wait for
@@ -74,5 +72,4 @@ public class ExponentialBackOffRetryPolicy
         double exponentialBackOffTime = ( Math.pow( 2, attempt ) - 1 ) / 2;
         return Duration.standardSeconds( (long) exponentialBackOffTime );
     }
-
 }

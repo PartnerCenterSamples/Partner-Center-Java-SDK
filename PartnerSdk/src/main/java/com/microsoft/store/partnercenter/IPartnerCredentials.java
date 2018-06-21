@@ -33,5 +33,4 @@ public interface IPartnerCredentials
     boolean isExpired();
 
     void onCredentialsRefreshNeeded( IPartnerCredentials credentials, IRequestContext context );
-
 }

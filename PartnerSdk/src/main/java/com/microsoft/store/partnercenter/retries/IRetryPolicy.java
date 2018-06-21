@@ -28,5 +28,4 @@ public interface IRetryPolicy
      * @return The back off time.
      */
     Duration getBackOffTime( int attempt );
-
 }

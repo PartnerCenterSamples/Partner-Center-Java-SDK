@@ -20,5 +20,4 @@ public interface IPartnerComponent<TContext>
      * Gets the component context object.
      */
     TContext getContext();
-
 }
