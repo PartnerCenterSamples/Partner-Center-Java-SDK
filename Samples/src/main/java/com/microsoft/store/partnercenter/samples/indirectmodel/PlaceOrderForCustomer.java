@@ -48,7 +48,7 @@ public class PlaceOrderForCustomer
         this.getContext().getConsoleHelper().startProgress( "Getting list of indirect resellers" );
 
         ResourceCollection<PartnerRelationship> indirectResellers = partnerOperations.getRelationships().get(
-            PartnerRelationshipType.IsIndirectCloudSolutionProviderOf);
+            PartnerRelationshipType.ISINDIRECTCLOUDSOLUTIONPROVIDEROF);
         
         this.getContext().getConsoleHelper().stopProgress();
 

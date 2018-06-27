@@ -21,7 +21,7 @@ public class GetIndirectResellersOfCustomer extends BasePartnerScenario
 {
     public GetIndirectResellersOfCustomer (IScenarioContext context) 
     {
-		super("Get indirect resellers", context);
+		super("Get indirect resellers of a customer", context);
 	}
 
     /**
