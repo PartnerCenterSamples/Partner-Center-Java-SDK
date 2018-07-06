@@ -34,7 +34,7 @@ public class GetIndirectResellers extends BasePartnerScenario
         this.getContext().getConsoleHelper().startProgress("Getting indirect resellers");
 
         ResourceCollection<PartnerRelationship> indirectResellers = partnerOperations.getRelationships().get(
-            PartnerRelationshipType.IsIndirectCloudSolutionProviderOf);
+            PartnerRelationshipType.ISINDIRECTCLOUDSOLUTIONPROVIDEROF);
 
         this.getContext().getConsoleHelper().stopProgress();
         this.getContext().getConsoleHelper().writeObject(indirectResellers, "Indirect Resellers");

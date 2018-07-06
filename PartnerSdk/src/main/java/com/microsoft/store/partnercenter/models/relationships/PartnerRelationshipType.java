@@ -13,9 +13,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public enum PartnerRelationshipType 
 {
-    @JsonProperty("is_indirect_reseller_pf")
-    IsIndirectResellerOf,
+    @JsonProperty("is_indirect_reseller_of")
+    ISINDIRECTRESELLEROF,
 
-    @JsonProperty("is_indirect_cloud_colution_provider_of")
-    IsIndirectCloudSolutionProviderOf
+    @JsonProperty("is_indirect_cloud_solution_provider_of")
+    ISINDIRECTCLOUDSOLUTIONPROVIDEROF
 }
